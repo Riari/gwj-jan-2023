@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/blaster-large.glb-42d97efd33b49556f199ffebd1f5d6c7.scn"
+path="res://.import/desert-floor-corner-square.glb-023a7afc7d6108ffeb3c236e342c46f6.scn"
 
 [deps]
 
-source_file="res://resources/models/train/blaster-large.glb"
-dest_files=[ "res://.import/blaster-large.glb-42d97efd33b49556f199ffebd1f5d6c7.scn" ]
+source_file="res://_raw/models/terrain/desert-floor-corner-square.glb"
+dest_files=[ "res://.import/desert-floor-corner-square.glb-023a7afc7d6108ffeb3c236e342c46f6.scn" ]
 
 [params]
 

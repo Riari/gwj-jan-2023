@@ -11,11 +11,32 @@
 
 [node name="Spatial" type="Spatial"]
 
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1920.0
+margin_bottom = -1080.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+margin_left = 602.0
+margin_top = 279.0
+margin_right = 1198.0
+margin_bottom = 470.0
+bbcode_enabled = true
+bbcode_text = "[b]Hello![/b]!"
+text = "Hello!!"
+
 [node name="TrainManager" type="Spatial" parent="."]
 script = ExtResource( 6 )
 
+[node name="Locomotive" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Start" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50704, 0.155802, 2.04696 )
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.497002, 3.2, 0.988 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.167512, 3.2, 0.988 )
 environment = ExtResource( 2 )
 script = ExtResource( 5 )
 
@@ -54,26 +75,44 @@ __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="Train" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499435, 0.153, 1.81294 )
-
-[node name="locomotive" parent="Train" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
-
 [node name="Track" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103, 0 )
 
-[node name="track-straight4" parent="Track" instance=ExtResource( 7 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.5, 0, -1.5 )
-
-[node name="track-corner" parent="Track" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1.5 )
-
-[node name="track-straight3" parent="Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, -0.5 )
+[node name="track-straight" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 1.5 )
 
 [node name="track-straight2" parent="Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, 0.5 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 0.5 )
 
-[node name="track-straight" parent="Track" instance=ExtResource( 7 )]
+[node name="track-straight3" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, -0.5 )
+
+[node name="track-corner" parent="Track" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1.5 )
+
+[node name="track-straight4" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5 )
+
+[node name="track-straight9" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.5 )
+
+[node name="track-corner2" parent="Track" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -1.5 )
+
+[node name="track-straight5" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -0.5 )
+
+[node name="track-straight6" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 0.5 )
+
+[node name="track-corner3" parent="Track" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, 1.5 )
+
+[node name="track-straight7" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
+
+[node name="track-corner4" parent="Track" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.5, 0, 1.5 )
+
+[node name="track-straight8" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, 0.5 )

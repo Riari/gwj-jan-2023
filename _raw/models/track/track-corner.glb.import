@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/desert-floor-corner-round.glb-e7a4fe3fddc1597aaffda55e788f2f1a.scn"
+path="res://.import/track-corner.glb-a54ec23436ed780baa104d3f72396e3c.scn"
 
 [deps]
 
-source_file="res://resources/models/terrain/desert-floor-corner-round.glb"
-dest_files=[ "res://.import/desert-floor-corner-round.glb-e7a4fe3fddc1597aaffda55e788f2f1a.scn" ]
+source_file="res://_raw/models/track/track-corner.glb"
+dest_files=[ "res://.import/track-corner.glb-a54ec23436ed780baa104d3f72396e3c.scn" ]
 
 [params]
 

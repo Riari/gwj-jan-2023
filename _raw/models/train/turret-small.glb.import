@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/blaster-small.glb-f4bcbc6ab5ddf5f07ac53be1876f8eb8.scn"
+path="res://.import/turret-small.glb-5c43fe597fca932da6f19ebd618a1559.scn"
 
 [deps]
 
-source_file="res://resources/models/train/blaster-small.glb"
-dest_files=[ "res://.import/blaster-small.glb-f4bcbc6ab5ddf5f07ac53be1876f8eb8.scn" ]
+source_file="res://_raw/models/train/turret-small.glb"
+dest_files=[ "res://.import/turret-small.glb-5c43fe597fca932da6f19ebd618a1559.scn" ]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" load_steps=18 format=2]
 
-[ext_resource path="res://resources/models/terrain/woodDark(Clone).material" type="Material" id=1]
-[ext_resource path="res://resources/models/terrain/wood(Clone).material" type="Material" id=2]
+[ext_resource path="res://_raw/models/terrain/woodDark(Clone).material" type="Material" id=1]
+[ext_resource path="res://_raw/models/terrain/wood(Clone).material" type="Material" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "desert-floor-centre_Mesh porch_floorCenter Instance"

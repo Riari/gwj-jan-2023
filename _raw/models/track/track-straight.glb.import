@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/turret-small.glb-69121ebdf2ed250572529ebe7200e475.scn"
+path="res://.import/track-straight.glb-9223ed7b8665cce07c4afff3bbe123a4.scn"
 
 [deps]
 
-source_file="res://resources/models/train/turret-small.glb"
-dest_files=[ "res://.import/turret-small.glb-69121ebdf2ed250572529ebe7200e475.scn" ]
+source_file="res://_raw/models/track/track-straight.glb"
+dest_files=[ "res://.import/track-straight.glb-9223ed7b8665cce07c4afff3bbe123a4.scn" ]
 
 [params]
 

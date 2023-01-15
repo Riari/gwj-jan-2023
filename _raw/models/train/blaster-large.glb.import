@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/turret-large.glb-ca38c63e4ce681c8652697916440d8ce.scn"
+path="res://.import/blaster-large.glb-02b49b950f45932748ac6c7f7e76c175.scn"
 
 [deps]
 
-source_file="res://resources/models/train/turret-large.glb"
-dest_files=[ "res://.import/turret-large.glb-ca38c63e4ce681c8652697916440d8ce.scn" ]
+source_file="res://_raw/models/train/blaster-large.glb"
+dest_files=[ "res://.import/blaster-large.glb-02b49b950f45932748ac6c7f7e76c175.scn" ]
 
 [params]
 

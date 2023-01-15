@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/desert-floor-corner-square.glb-e43d74bc9f29fb33412a3c05273ac873.scn"
+path="res://.import/desert-floor-edge.glb-22ce2e65b55d95cf22711267c3b2eee3.scn"
 
 [deps]
 
-source_file="res://resources/models/terrain/desert-floor-corner-square.glb"
-dest_files=[ "res://.import/desert-floor-corner-square.glb-e43d74bc9f29fb33412a3c05273ac873.scn" ]
+source_file="res://_raw/models/terrain/desert-floor-edge.glb"
+dest_files=[ "res://.import/desert-floor-edge.glb-22ce2e65b55d95cf22711267c3b2eee3.scn" ]
 
 [params]
 

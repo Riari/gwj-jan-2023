@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/track-corner.glb-b96767e8601a62581e96a3462e7d0966.scn"
+path="res://.import/turret-incendiary.glb-bb1244c72dabad2a1b21980073a6e65b.scn"
 
 [deps]
 
-source_file="res://resources/models/track/track-corner.glb"
-dest_files=[ "res://.import/track-corner.glb-b96767e8601a62581e96a3462e7d0966.scn" ]
+source_file="res://_raw/models/train/turret-incendiary.glb"
+dest_files=[ "res://.import/turret-incendiary.glb-bb1244c72dabad2a1b21980073a6e65b.scn" ]
 
 [params]
 

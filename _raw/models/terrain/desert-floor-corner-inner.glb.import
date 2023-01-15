@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/locomotive.glb-c1817767462607bb67dfc03004350bd0.scn"
+path="res://.import/desert-floor-corner-inner.glb-1691466970dd9b1eb7cc40e20a5f60de.scn"
 
 [deps]
 
-source_file="res://resources/models/train/locomotive.glb"
-dest_files=[ "res://.import/locomotive.glb-c1817767462607bb67dfc03004350bd0.scn" ]
+source_file="res://_raw/models/terrain/desert-floor-corner-inner.glb"
+dest_files=[ "res://.import/desert-floor-corner-inner.glb-1691466970dd9b1eb7cc40e20a5f60de.scn" ]
 
 [params]
 

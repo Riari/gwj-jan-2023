@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/desert-floor-edge.glb-cba28586d51c271657c1e00cc57d6360.scn"
+path="res://.import/turret-large.glb-a6e5b93fab35e8b629e601609c9d8b4f.scn"
 
 [deps]
 
-source_file="res://resources/models/terrain/desert-floor-edge.glb"
-dest_files=[ "res://.import/desert-floor-edge.glb-cba28586d51c271657c1e00cc57d6360.scn" ]
+source_file="res://_raw/models/train/turret-large.glb"
+dest_files=[ "res://.import/turret-large.glb-a6e5b93fab35e8b629e601609c9d8b4f.scn" ]
 
 [params]
 

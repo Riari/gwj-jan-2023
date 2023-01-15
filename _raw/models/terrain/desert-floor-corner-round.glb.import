@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/turret-incendiary.glb-971d7783dc9e48e75f4c86f86d3148dc.scn"
+path="res://.import/desert-floor-corner-round.glb-25bbe8211ae602a1ad1e0290922c3e5c.scn"
 
 [deps]
 
-source_file="res://resources/models/train/turret-incendiary.glb"
-dest_files=[ "res://.import/turret-incendiary.glb-971d7783dc9e48e75f4c86f86d3148dc.scn" ]
+source_file="res://_raw/models/terrain/desert-floor-corner-round.glb"
+dest_files=[ "res://.import/desert-floor-corner-round.glb-25bbe8211ae602a1ad1e0290922c3e5c.scn" ]
 
 [params]
 
