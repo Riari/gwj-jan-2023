@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/objects/track-straight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/objects/track-corner.tscn" type="PackedScene" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="track-corner" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
+
+[node name="track-straight" parent="." instance=ExtResource( 1 )]
