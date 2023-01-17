@@ -1,7 +1,7 @@
 extends Node
 
 onready var locomotive = get_node("../Locomotive")
-onready var track = get_node("../Track")
+onready var track = get_node("../Grid/Track")
 onready var start = get_node("../Start")
 
 onready var track_segment_straight = preload("res://scenes/objects/track-straight.tscn")
@@ -44,7 +44,6 @@ func on_hud_entered_track_place_mode():
 	var segment = track_segment_corner.instance()
 	track.add_child(segment)
 	segment.translation = Vector3(2.5, 0, -0.5)
-	segment.rotation_degrees = Vector3(0, -90, 0)
 
 	var curve = extend_track(path.get_curve())
 	path.set_curve(curve)
@@ -68,3 +67,8 @@ func extend_track(curve):
 				new_curve.add_point(path_end)
 
 	return new_curve
+
+
+func on_car_collision_detected(car: Node, node: Node):
+	print(car)
+	print(node)

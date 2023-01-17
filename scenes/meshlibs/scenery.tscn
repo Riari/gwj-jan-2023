@@ -1,0 +1,37 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://_raw/models/scenery/rocks-small.glb" type="PackedScene" id=1]
+[ext_resource path="res://_raw/models/scenery/debris-stones.glb" type="PackedScene" id=2]
+[ext_resource path="res://_raw/models/scenery/fence-straight.glb" type="PackedScene" id=3]
+[ext_resource path="res://_raw/models/scenery/fence-curved.glb" type="PackedScene" id=4]
+[ext_resource path="res://_raw/models/scenery/debris-planks.glb" type="PackedScene" id=5]
+[ext_resource path="res://_raw/models/scenery/rock-large.glb" type="PackedScene" id=6]
+[ext_resource path="res://_raw/models/scenery/rock-small.glb" type="PackedScene" id=7]
+[ext_resource path="res://_raw/models/scenery/rocks-large.glb" type="PackedScene" id=8]
+[ext_resource path="res://_raw/models/scenery/branch.glb" type="PackedScene" id=9]
+[ext_resource path="res://_raw/models/scenery/foliage-large.glb" type="PackedScene" id=10]
+[ext_resource path="res://_raw/models/scenery/foliage-small.glb" type="PackedScene" id=11]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="branch" parent="." instance=ExtResource( 9 )]
+
+[node name="debris-planks" parent="." instance=ExtResource( 5 )]
+
+[node name="debris-stones" parent="." instance=ExtResource( 2 )]
+
+[node name="fence-curved" parent="." instance=ExtResource( 4 )]
+
+[node name="fence-straight" parent="." instance=ExtResource( 3 )]
+
+[node name="foliage-large" parent="." instance=ExtResource( 10 )]
+
+[node name="foliage-small" parent="." instance=ExtResource( 11 )]
+
+[node name="rock-large" parent="." instance=ExtResource( 6 )]
+
+[node name="rock-small" parent="." instance=ExtResource( 7 )]
+
+[node name="rocks-large" parent="." instance=ExtResource( 8 )]
+
+[node name="rocks-small" parent="." instance=ExtResource( 1 )]
