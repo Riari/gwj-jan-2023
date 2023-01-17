@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://materials/engine_flame.material" type="Material" id=1]
+[ext_resource path="res://materials/jet_flame.material" type="Material" id=1]
 [ext_resource path="res://_raw/models/primitives/open-cylinder.obj" type="ArrayMesh" id=2]
 
 [node name="JetFlame" type="Spatial"]
