@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://_raw/models/enemy/projectile-rocket.glb" type="PackedScene" id=1]
-[ext_resource path="res://materials/projectile_muzzle_particle_spatial_material.tres" type="Material" id=2]
+[ext_resource path="res://scenes/effects/JetFlame.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Projectile.gd" type="Script" id=3]
-
-[sub_resource type="QuadMesh" id=1]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.0232196
@@ -13,32 +11,23 @@ height = 0.183905
 [node name="projectile-rocket" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="cone" parent="." index="0"]
-transform = Transform( 1.2267e-09, -0.0205807, 0, 0.0205807, 1.2267e-09, 0, 0, 0, 0.02058, -0.0923185, 8.3928e-05, 0.000153467 )
-
-[node name="cylinder_taper" parent="." index="1"]
-transform = Transform( 2.45341e-09, -0.0411613, 0, 0.0411613, 2.45341e-09, 0, 0, 0, 0.04116, -0.0511586, 8.39429e-05, 0.000153467 )
-
-[node name="cylinder" parent="." index="2"]
-transform = Transform( 2.4534e-09, -0.122248, 0, 0.0411613, 7.28655e-09, 0, 0, 0, 0.04116, 0.0710867, 8.39131e-05, 0.000153467 )
-
-[node name="engine_round" parent="." index="3"]
-transform = Transform( 0, 6.93906e-09, -0.0411611, -3.46962e-09, 0.04116, 6.93924e-09, 0.0411611, 3.46953e-09, 0, 0.0723215, -0.0204961, 0.000153467 )
-
-[node name="Particles" type="CPUParticles" parent="." index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12434, 0, 0 )
-material_override = ExtResource( 2 )
-cast_shadow = 0
-lifetime = 0.06
-randomness = 0.21
-local_coords = false
-mesh = SubResource( 1 )
-gravity = Vector3( 2, 0, 0 )
-scale_amount = 0.1
-color = Color( 1, 0.290196, 0, 1 )
-
-[node name="StaticBody" type="StaticBody" parent="." index="5"]
+[node name="StaticBody" type="StaticBody" parent="." index="0"]
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
+
+[node name="cone" parent="." index="1"]
+transform = Transform( 1.59741e-09, -0.0268001, 0, 0.0268001, 1.59741e-09, 0, 0, 0, 0.0268, -0.117, -0.000178322, -8.15431e-05 )
+
+[node name="cylinder_taper" parent="." index="2"]
+transform = Transform( 3.19482e-09, -0.0536002, 0, 0.0536002, 3.19482e-09, 0, 0, 0, 0.0536, -0.0636, -0.000178322, -8.15431e-05 )
+
+[node name="cylinder" parent="." index="3"]
+transform = Transform( 3.19482e-09, -0.1589, 0, 0.0536002, 9.4712e-09, 0, 0, 0, 0.0536, 0.0954, -0.000178367, -8.15431e-05 )
+
+[node name="engine_round" parent="." index="4"]
+transform = Transform( 0, 9.03628e-09, -0.0536001, -4.51815e-09, 0.0536, 9.0363e-09, 0.0536001, 4.51814e-09, 0, 0.097, -0.0269784, -8.15431e-05 )
+
+[node name="JetFlame" parent="." index="5" instance=ExtResource( 2 )]
+transform = Transform( -6.99382e-10, 0.04, 0, -0.016, -1.74846e-09, 0, 0, 0, 0.016, 0.121783, 0, 0 )
