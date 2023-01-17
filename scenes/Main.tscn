@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://meshes/libraries/terrain.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://environments/default.tres" type="Environment" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://meshes/libraries/scenery.tres" type="MeshLibrary" id=11]
 [ext_resource path="res://_raw/models/logo.glb" type="PackedScene" id=12]
 [ext_resource path="res://scripts/CinematicCamera.gd" type="Script" id=13]
+[ext_resource path="res://scripts/GroundCollision.gd" type="Script" id=14]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 5, 0.0505799, 13 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -50,11 +54,7 @@ script = ExtResource( 5 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.443842, -0.865564, 0.231958, -0.51586, 0.458456, 0.723676, -0.73273, 0.201539, -0.649991, 3.37471, 1.62158, -0.0127292 )
 shadow_enabled = true
-directional_shadow_split_1 = 0.03
-directional_shadow_split_2 = 0.12
-directional_shadow_split_3 = 0.3
 directional_shadow_normal_bias = 0.0
-directional_shadow_depth_range = 1
 
 [node name="Grid" type="Spatial" parent="."]
 
@@ -88,7 +88,7 @@ mesh_library = ExtResource( 11 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_y = false
 data = {
-"cells": PoolIntArray( 3, 0, 1441796, 65532, 65533, 1441800, 65533, 65533, 655360, 3, 65535, 1441796, 65534, 65535, 1441799 )
+"cells": PoolIntArray( 3, 0, 1441796, 65532, 65533, 1441800, 65533, 65533, 655360, 3, 65535, 1441796 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -139,16 +139,10 @@ transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, 0
 [node name="track-straight10" parent="Grid/Track" instance=ExtResource( 7 )]
 transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, -0.5 )
 
-[node name="track-straight11" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, -1.5 )
-
-[node name="track-straight12" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, -2.5 )
-
 [node name="Enemy" type="Spatial" parent="Grid"]
 
 [node name="turret-small" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5 )
 
 [node name="logo" parent="." instance=ExtResource( 12 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, -2 )
@@ -160,6 +154,14 @@ visible = false
 environment = ExtResource( 2 )
 script = ExtResource( 13 )
 
+[node name="Ground" type="Area" parent="."]
+script = ExtResource( 14 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -10 )
+shape = SubResource( 1 )
+
 [connection signal="entered_track_place_mode" from="HUD" to="TrainController" method="on_hud_entered_track_place_mode"]
 [connection signal="pressed" from="HUD/Button" to="HUD" method="on_test_button_pressed"]
 [connection signal="collision_detected" from="Locomotive" to="TrainController" method="on_car_collision_detected"]
+[connection signal="body_entered" from="Ground" to="Ground" method="on_body_entered"]

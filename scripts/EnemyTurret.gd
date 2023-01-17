@@ -2,7 +2,10 @@ extends Spatial
 
 onready var turret = get_node("Turret")
 onready var muzzle = get_node("Turret/Muzzle")
+onready var audio_effects = get_node("Audio").get_children()
 onready var projectile = preload("res://scenes/objects/enemy-projectile-rocket.tscn")
+
+var rng = RandomNumberGenerator.new()
 
 var rotation_speed = 0.1
 var target: Node
@@ -42,3 +45,7 @@ func fire():
 	p.global_transform = muzzle.global_transform
 	p.look_at(target.global_transform.origin, Vector3.UP)
 	p.launch()
+
+	rng.randomize()
+	var audio_index = rng.randi_range(0, audio_effects.size() - 1)
+	audio_effects[audio_index].play()

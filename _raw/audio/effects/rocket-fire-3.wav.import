@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rocket-fire-3.wav-07b1f9ead003a9a51a3d90d1ec5f2115.sample"
+
+[deps]
+
+source_file="res://_raw/audio/effects/rocket-fire-3.wav"
+dest_files=[ "res://.import/rocket-fire-3.wav-07b1f9ead003a9a51a3d90d1ec5f2115.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
