@@ -24,8 +24,8 @@ var distance_between_cars = 0.5 # in terms of the PathFollow offset value
 var path_end
 var moving = true
 
-# last_car_in_position is used for newly added cars: when a car is added, it's initially invisible and
-# waits on the track until its distance to the one in front is equal to distance_between_cars.
+# last_car_in_position is used for newly spwaned cars: when a car is spawned, it's initially invisible and
+# waits on the track until its distance to the one in front is equal to or greater than distance_between_cars.
 # This means its rotation will be correct when it becomes visible and starts moving when spawned on a corner.
 var last_car_in_position = true
 
