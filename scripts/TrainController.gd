@@ -26,7 +26,7 @@ var moving = true
 
 # last_car_in_position is used for newly spawned cars: when a car is spawned, it's initially invisible and
 # waits on the track until its distance to the one in front is equal to or greater than distance_between_cars.
-# This means its rotation will be correct when it becomes visible and starts moving when spawned on a corner.
+# This means that if spawned on a corner, its rotation will be correct when it becomes visible and starts moving.
 var last_car_in_position = true
 
 func _ready():
