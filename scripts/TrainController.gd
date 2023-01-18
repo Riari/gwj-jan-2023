@@ -1,16 +1,33 @@
 extends Node
 
-onready var locomotive = get_node("../Locomotive")
 onready var track = get_node("../Grid/Track")
 onready var start = get_node("../Start")
+onready var camera = get_node("../Camera")
 
 onready var track_segment_straight = preload("res://scenes/objects/track-straight.tscn")
 onready var track_segment_corner = preload("res://scenes/objects/track-corner.tscn")
 
+enum CAR_TYPE {
+	LOCOMOTIVE,
+	TURRET_SMALL
+}
+onready var train_locomotive = preload("res://scenes/objects/train-locomotive.tscn")
+onready var train_car_turret_small = preload("res://scenes/objects/train-car-turret-small.tscn")
+
 var last_added_segment_index = -1
 var path = Path.new()
-var path_follow
+var path_follows = []
+var cars = []
+var car_count = 0
+var last_car_path_offset = 0.0
+var distance_between_cars = 0.5 # in terms of the PathFollow offset value
 var path_end
+var moving = true
+
+# last_car_in_position is used for newly added cars: when a car is added, it's initially invisible and
+# waits on the track until its distance to the one in front is equal to distance_between_cars.
+# This means its rotation will be correct when it becomes visible and starts moving when spawned on a corner.
+var last_car_in_position = true
 
 func _ready():
 	var curve = Curve3D.new()
@@ -18,27 +35,41 @@ func _ready():
 	curve.set_up_vector_enabled(false)
 
 	path_end = start.global_translation
-
 	curve = extend_track(curve)
-
 	path.set_curve(curve)
-
-	path_follow = PathFollow.new()
-	path_follow.loop = false
-	path_follow.rotation_mode = PathFollow.ROTATION_Y
-
-	get_parent().call_deferred("remove_child", locomotive)
-	path_follow.call_deferred("add_child", locomotive)
-
-	path.add_child(path_follow)
-
 	add_child(path)
 
+	spawn_car(CAR_TYPE.LOCOMOTIVE)
+
+func _input(event):
+	if event is InputEventKey && event.is_action_released("ui_select"):
+		spawn_car(CAR_TYPE.TURRET_SMALL)
+
 func _process(delta):
-	if not path_follow:
+	if car_count == 0:
 		return
 
-	path_follow.offset += delta
+	if path_follows[0].unit_offset == 1.0:
+		# Locomotive has reached the end of the track
+		# TODO: losing condition - show retry/exit menu and maybe derail the train for fun?
+		moving = false
+
+	if not last_car_in_position:
+		if path_follows[car_count - 2].offset - path_follows[car_count - 1].offset >= distance_between_cars:
+			cars[car_count - 1].visible = true
+			last_car_in_position = true
+
+	if not moving:
+		return
+
+	for i in path_follows.size():
+		if not last_car_in_position and i == car_count - 1:
+			break
+
+		path_follows[i].offset += delta
+		if i == path_follows.size() - 1:
+			# Record the last car's PathFollow offset
+			last_car_path_offset = path_follows[i].offset
 
 func on_hud_entered_track_place_mode():
 	var segment = track_segment_corner.instance()
@@ -47,6 +78,33 @@ func on_hud_entered_track_place_mode():
 
 	var curve = extend_track(path.get_curve())
 	path.set_curve(curve)
+
+func spawn_car(type: int):
+	var car
+	match type:
+		CAR_TYPE.LOCOMOTIVE:
+			# This should only be spawned once and the camera should follow it
+			car = train_locomotive.instance()
+			camera.follow(car)
+		CAR_TYPE.TURRET_SMALL:
+			car = train_car_turret_small.instance()
+
+	var path_follow = PathFollow.new()
+	path_follow.loop = false
+	path_follow.rotation_mode = PathFollow.ROTATION_Y
+	path_follow.add_child(car)
+
+	if car_count > 0:
+		path_follow.offset = last_car_path_offset
+		car.global_rotation = cars[car_count - 1].global_rotation
+		car.visible = false
+		last_car_in_position = false
+
+	path_follows.append(path_follow)
+	cars.append(car)
+	car_count += 1
+
+	path.add_child(path_follow)
 
 func extend_track(curve):
 	var new_curve = curve
@@ -68,7 +126,5 @@ func extend_track(curve):
 
 	return new_curve
 
-
-func on_car_collision_detected(car: Node, node: Node):
-	print(car)
-	print(node)
+func on_car_collision_detected(_car: Node, _node: Node):
+	pass

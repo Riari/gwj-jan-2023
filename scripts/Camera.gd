@@ -1,6 +1,12 @@
 extends Camera
 
-onready var locomotive = get_node("../Locomotive")
+var follow_target
+
+func follow(node):
+	follow_target = node
 
 func _process(_delta):
-	transform.origin.z = locomotive.global_translation.z
+	if not follow_target:
+		return
+
+	transform.origin.z = follow_target.global_translation.z

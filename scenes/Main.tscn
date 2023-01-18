@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://meshes/libraries/terrain.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://environments/default.tres" type="Environment" id=2]
 [ext_resource path="res://scenes/objects/enemy-turret-small.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/objects/train-locomotive.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=5]
 [ext_resource path="res://scripts/TrainController.gd" type="Script" id=6]
 [ext_resource path="res://scenes/objects/track-straight.tscn" type="PackedScene" id=7]
@@ -38,9 +37,6 @@ text = "Click me"
 
 [node name="TrainController" type="Spatial" parent="."]
 script = ExtResource( 6 )
-
-[node name="Locomotive" parent="." instance=ExtResource( 4 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="Start" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49296, 0.155802, 2.04696 )
@@ -95,7 +91,7 @@ __meta__ = {
 }
 
 [node name="Track" type="Spatial" parent="Grid"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 
 [node name="track-straight" parent="Grid/Track" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 1.5 )
@@ -163,5 +159,4 @@ shape = SubResource( 1 )
 
 [connection signal="entered_track_place_mode" from="HUD" to="TrainController" method="on_hud_entered_track_place_mode"]
 [connection signal="pressed" from="HUD/Button" to="HUD" method="on_test_button_pressed"]
-[connection signal="collision_detected" from="Locomotive" to="TrainController" method="on_car_collision_detected"]
 [connection signal="body_entered" from="Ground" to="Ground" method="on_body_entered"]
