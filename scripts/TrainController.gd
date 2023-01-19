@@ -30,7 +30,7 @@ func _ready():
 	curve.set_up_vector_enabled(false)
 
 	path_end = start.global_translation
-	curve = extend_track(curve)
+	curve = update_curve(curve)
 	path.set_curve(curve)
 	add_child(path)
 
@@ -38,7 +38,12 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey && event.is_action_released("ui_select"):
-		spawn_car(CAR_TYPE.TURRET_SMALL)
+		var segment = track_segment_straight.instance()
+		segment.global_translation = Vector3(2.5, 0, -1.5)
+		segment.rotation_degrees = Vector3(0, -90, 0)
+		track.add_child(segment)
+		path.set_curve(update_curve(path.get_curve()))
+		# spawn_car(CAR_TYPE.TURRET_SMALL)
 
 func _process(delta):
 	if car_count == 0:
@@ -63,7 +68,7 @@ func on_hud_entered_track_place_mode():
 	track.add_child(segment)
 	segment.translation = Vector3(2.5, 0, -0.5)
 
-	var curve = extend_track(path.get_curve())
+	var curve = update_curve(path.get_curve())
 	path.set_curve(curve)
 
 func spawn_car(type: int):
@@ -91,7 +96,8 @@ func spawn_car(type: int):
 
 	path.add_child(path_follow)
 
-func extend_track(curve):
+# update_curve updates the given curve to match the current state of track segments
+func update_curve(curve):
 	var new_curve = curve
 	var segments = track.get_children()
 
