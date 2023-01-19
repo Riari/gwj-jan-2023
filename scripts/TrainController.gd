@@ -24,11 +24,6 @@ var distance_between_cars = 0.5 # in terms of the PathFollow offset value
 var path_end
 var moving = true
 
-# last_car_in_position is used for newly spawned cars: when a car is spawned, it's initially invisible and
-# waits on the track until its distance to the one in front is equal to or greater than distance_between_cars.
-# This means that if spawned on a corner, its rotation will be correct when it becomes visible and starts moving.
-var last_car_in_position = true
-
 func _ready():
 	var curve = Curve3D.new()
 	curve.set_bake_interval(0.3)
@@ -54,18 +49,10 @@ func _process(delta):
 		# TODO: losing condition - show retry/exit menu and maybe derail the train for fun?
 		moving = false
 
-	if not last_car_in_position:
-		if path_follows[car_count - 2].offset - path_follows[car_count - 1].offset >= distance_between_cars:
-			cars[car_count - 1].show()
-			last_car_in_position = true
-
 	if not moving:
 		return
 
 	for i in path_follows.size():
-		if not last_car_in_position and i == car_count - 1:
-			break
-
 		path_follows[i].offset += delta
 		if i == path_follows.size() - 1:
 			# Record the last car's PathFollow offset
@@ -85,23 +72,20 @@ func spawn_car(type: int):
 		CAR_TYPE.LOCOMOTIVE:
 			# This should only be spawned once and the camera should follow it
 			car = train_locomotive.instance()
-			car.show()
 			camera.follow(car)
 		CAR_TYPE.TURRET_SMALL:
 			car = train_car_turret_small.instance()
 
 	var path_follow = PathFollow.new()
 	path_follow.loop = false
-	path_follow.rotation_mode = PathFollow.ROTATION_Y
+	path_follow.rotation_mode = PathFollow.ROTATION_ORIENTED
 	path_follow.add_child(car)
 
 	if car_count > 0:
-		path_follow.offset = last_car_path_offset
-		car.global_rotation = cars[car_count - 1].global_rotation
-		car.visible = false
-		last_car_in_position = false
+		path_follow.offset = last_car_path_offset - distance_between_cars
 
 	path_follows.append(path_follow)
+	car.show()
 	cars.append(car)
 	car_count += 1
 

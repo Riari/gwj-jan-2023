@@ -11,23 +11,23 @@ extents = Vector3( 0.203569, 0.206103, 0.20263 )
 script = ExtResource( 2 )
 
 [node name="bogie_clamp" parent="." index="0"]
-transform = Transform( -0.38, 0, -3.32207e-08, 0, 0.38, 0, 3.32207e-08, 0, -0.38, 0, 0, 0 )
+transform = Transform( -0.38, 0, -1.2382e-07, 0, 0.38, 0, 1.2382e-07, 0, -0.38, 0, 0, 0 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 3 )
 
 [node name="diesel_cabin_front" parent="." index="1"]
-transform = Transform( 0.38, -4.52995e-08, -6.88025e-09, 4.52995e-08, 0.38, 6.88022e-09, 6.88025e-09, -6.88022e-09, 0.38, 0, 0.19, 0 )
+transform = Transform( -0.38, 0, -3.32207e-08, 0, 0.38, 0, 3.32207e-08, 0, -0.38, 0, 0.19, 0 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 3 )
 material/2 = ExtResource( 3 )
 
 [node name="wheel_small" parent="." index="2"]
-transform = Transform( -0.38, 0, -3.32207e-08, 0, 0.38, 0, 3.32207e-08, 0, -0.38, -8.74228e-09, 0, -0.1 )
+transform = Transform( -0.38, 0, -1.2382e-07, 0, 0.38, 0, 1.2382e-07, 0, -0.38, -2.62268e-08, 0, -0.1 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 3 )
 
 [node name="wheel_small2" parent="." index="3"]
-transform = Transform( -0.38, 0, -3.32207e-08, 0, 0.38, 0, 3.32207e-08, 0, -0.38, 8.74228e-09, 0, 0.1 )
+transform = Transform( -0.38, 0, -1.2382e-07, 0, 0.38, 0, 1.2382e-07, 0, -0.38, 2.62268e-08, 0, 0.1 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 3 )
 
