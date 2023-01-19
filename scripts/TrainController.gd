@@ -56,7 +56,7 @@ func _process(delta):
 
 	if not last_car_in_position:
 		if path_follows[car_count - 2].offset - path_follows[car_count - 1].offset >= distance_between_cars:
-			cars[car_count - 1].visible = true
+			cars[car_count - 1].show()
 			last_car_in_position = true
 
 	if not moving:
@@ -85,6 +85,7 @@ func spawn_car(type: int):
 		CAR_TYPE.LOCOMOTIVE:
 			# This should only be spawned once and the camera should follow it
 			car = train_locomotive.instance()
+			car.show()
 			camera.follow(car)
 		CAR_TYPE.TURRET_SMALL:
 			car = train_car_turret_small.instance()
