@@ -24,11 +24,12 @@ var distance_between_cars = 0.5 # in terms of the PathFollow offset value
 var path_end
 var moving = true
 
+var integrity = 100
+
+signal integrity_changed(old, new)
+
 func _ready():
 	var curve = Curve3D.new()
-	curve.set_bake_interval(0.3)
-	curve.set_up_vector_enabled(false)
-
 	path_end = start.global_translation
 	curve = update_curve(curve)
 	path.set_curve(curve)
@@ -43,7 +44,7 @@ func _input(event):
 		segment.rotation_degrees = Vector3(0, -90, 0)
 		track.add_child(segment)
 		path.set_curve(update_curve(path.get_curve()))
-		# spawn_car(CAR_TYPE.TURRET_SMALL)
+		spawn_car(CAR_TYPE.TURRET_SMALL)
 
 func _process(delta):
 	if car_count == 0:
@@ -90,6 +91,7 @@ func spawn_car(type: int):
 		path_follow.offset = last_car_path_offset - distance_between_cars
 
 	path_follows.append(path_follow)
+	car.connect("collision_detected", self, "on_car_collision_detected")
 	car.show()
 	cars.append(car)
 	car_count += 1
@@ -117,5 +119,10 @@ func update_curve(curve):
 
 	return new_curve
 
-func on_car_collision_detected(_car: Node, _node: Node):
-	pass
+func on_car_collision_detected(_car: Node, node: Node):
+	# TODO: don't hard-code damage
+	if node.is_in_group("enemy_projectile"):
+		var old_integrity = integrity
+		integrity -= 15
+		emit_signal("integrity_changed", old_integrity, integrity)
+		node.get_owner().explode()

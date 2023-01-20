@@ -1,0 +1,95 @@
+[gd_resource type="VisualShader" load_steps=8 format=2]
+
+[sub_resource type="VisualShaderNodeInput" id=1]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=2]
+
+[sub_resource type="VisualShaderNodeCompare" id=3]
+function = 3
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=4]
+uniform_name = "Value"
+hint = 1
+default_value_enabled = true
+default_value = 0.5
+
+[sub_resource type="VisualShaderNodeColorUniform" id=5]
+uniform_name = "Color"
+default_value_enabled = true
+default_value = Color( 0, 0.345098, 1, 1 )
+
+[sub_resource type="VisualShaderNodeVectorOp" id=6]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.5, 0.5, 0.5 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=7]
+
+[resource]
+code = "shader_type canvas_item;
+uniform vec4 Color : hint_color = vec4(0.000000, 0.345098, 1.000000, 1.000000);
+uniform float Value : hint_range(0, 1) = 0.5;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ColorUniform:6
+	vec3 n_out6p0 = Color.rgb;
+	float n_out6p1 = Color.a;
+
+// VectorOp:7
+	vec3 n_in7p1 = vec3(0.50000, 0.50000, 0.50000);
+	vec3 n_out7p0 = n_out6p0 * n_in7p1;
+
+// Input:2
+	vec3 n_out2p0 = vec3(UV, 0.0);
+
+// VectorDecompose:3
+	float n_out3p0 = n_out2p0.x;
+	float n_out3p1 = n_out2p0.y;
+	float n_out3p2 = n_out2p0.z;
+
+// ScalarUniform:5
+	float n_out5p0 = Value;
+
+// Compare:4
+	bool n_out4p0 = n_out3p0>=n_out5p0;
+
+// VectorMix:8
+	vec3 n_out8p0 = mix(n_out6p0, n_out7p0, vec3(n_out4p0 ? 1.0 : 0.0));
+
+// Output:0
+	COLOR.rgb = n_out8p0;
+	COLOR.a = n_out6p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2( 1600, 280 )
+nodes/fragment/0/position = Vector2( 1000, 240 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( 0, 0 )
+nodes/fragment/3/node = SubResource( 2 )
+nodes/fragment/3/position = Vector2( 200, 0 )
+nodes/fragment/4/node = SubResource( 3 )
+nodes/fragment/4/position = Vector2( 500, 0 )
+nodes/fragment/5/node = SubResource( 4 )
+nodes/fragment/5/position = Vector2( 200, 140 )
+nodes/fragment/6/node = SubResource( 5 )
+nodes/fragment/6/position = Vector2( 160, 400 )
+nodes/fragment/7/node = SubResource( 6 )
+nodes/fragment/7/position = Vector2( 640, 400 )
+nodes/fragment/8/node = SubResource( 7 )
+nodes/fragment/8/position = Vector2( 840, 260 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 3, 0, 3, 0, 4, 0, 5, 0, 4, 1, 6, 0, 7, 0, 7, 0, 8, 1, 4, 0, 8, 2, 6, 0, 8, 0, 8, 0, 0, 0, 6, 1, 0, 1 )
