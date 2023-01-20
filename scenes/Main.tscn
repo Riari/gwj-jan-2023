@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://meshes/libraries/terrain.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://environments/default.tres" type="Environment" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=5]
 [ext_resource path="res://scripts/TrainController.gd" type="Script" id=6]
 [ext_resource path="res://scenes/objects/track-straight.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/objects/track-corner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/VFXController.gd" type="Script" id=9]
 [ext_resource path="res://meshes/libraries/scenery.tres" type="MeshLibrary" id=11]
 [ext_resource path="res://_raw/models/logo.glb" type="PackedScene" id=12]
@@ -28,10 +27,10 @@ script = ExtResource( 9 )
 script = ExtResource( 6 )
 
 [node name="Start" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49296, 0.155802, 2.04696 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.156, 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.155, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, 4.5, 0 )
 environment = ExtResource( 2 )
 current = true
 script = ExtResource( 5 )
@@ -42,6 +41,7 @@ shadow_enabled = true
 directional_shadow_normal_bias = 0.0
 
 [node name="Grid" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5 )
 
 [node name="Terrain" type="GridMap" parent="Grid"]
 mesh_library = ExtResource( 1 )
@@ -80,57 +80,23 @@ __meta__ = {
 }
 
 [node name="Track" type="Spatial" parent="Grid"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.1, 0.5 )
 
 [node name="track-straight" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 1.5 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 1 )
 
 [node name="track-straight2" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, 0.5 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 0 )
 
 [node name="track-straight3" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0, -0.5 )
-
-[node name="track-corner" parent="Grid/Track" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1.5 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -1 )
 
 [node name="track-straight4" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5 )
-
-[node name="track-straight9" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.5 )
-
-[node name="track-corner2" parent="Grid/Track" instance=ExtResource( 8 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -1.5 )
-
-[node name="track-straight5" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, -0.5 )
-
-[node name="track-straight6" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 0.5 )
-
-[node name="track-corner3" parent="Grid/Track" instance=ExtResource( 8 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, 1.5 )
-
-[node name="track-straight7" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
-
-[node name="track-corner4" parent="Grid/Track" instance=ExtResource( 8 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.5, 0, 1.5 )
-
-[node name="track-straight8" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, 0.5 )
-
-[node name="track-straight10" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, -0.5 )
-
-[node name="track-straight11" parent="Grid/Track" instance=ExtResource( 7 )]
-transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, 2.5, 0, -1.5 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -2 )
 
 [node name="Enemy" type="Spatial" parent="Grid"]
 
 [node name="turret-small" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5 )
 
 [node name="logo" parent="." instance=ExtResource( 12 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, -2 )
@@ -143,6 +109,7 @@ environment = ExtResource( 2 )
 script = ExtResource( 13 )
 
 [node name="Ground" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5 )
 script = ExtResource( 14 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Ground"]

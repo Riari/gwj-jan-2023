@@ -37,14 +37,15 @@ func _ready():
 
 	spawn_car(CAR_TYPE.LOCOMOTIVE)
 
-func _input(event):
-	if event is InputEventKey && event.is_action_released("ui_select"):
-		var segment = track_segment_straight.instance()
-		segment.global_translation = Vector3(2.5, 0, -1.5)
-		segment.rotation_degrees = Vector3(0, -90, 0)
-		track.add_child(segment)
-		path.set_curve(update_curve(path.get_curve()))
-		spawn_car(CAR_TYPE.TURRET_SMALL)
+func _input(_event):
+	pass
+	# if event is InputEventKey && event.is_action_released("ui_select"):
+	# 	var segment = track_segment_straight.instance()
+	# 	segment.global_translation = Vector3(2.5, 0, -1.5)
+	# 	segment.rotation_degrees = Vector3(0, -90, 0)
+	# 	track.add_child(segment)
+	# 	path.set_curve(update_curve(path.get_curve()))
+	# 	spawn_car(CAR_TYPE.TURRET_SMALL)
 
 func _process(delta):
 	if car_count == 0:
@@ -105,12 +106,14 @@ func update_curve(curve):
 
 	# Assume track segments are ordered from closest to furthest
 	for i in range(last_added_segment_index + 1, segments.size(), 1):
+		# Path points within a segment should also be in distance order
 		var points = segments[i].get_node("PathPoints").get_children()
 		last_added_segment_index = i
 
+		# Determine which way to traverse the points - from last to first if the last point is closer, otherwise first to last
 		if points[points.size() - 1].global_translation.distance_to(path_end) < points[0].global_translation.distance_to(path_end):
-			for j in range(points.size() - 1, 0, -1):
-				path_end = points[j].global_translation
+			for j in range(points.size(), 0, -1):
+				path_end = points[j - 1].global_translation
 				new_curve.add_point(path_end)
 		else:
 			for j in points.size():
