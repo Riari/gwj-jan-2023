@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-progress-64px.png" type="Texture" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -39,13 +39,35 @@
 [ext_resource path="res://_raw/textures/ui/icon--train-car-laser-double--normal.png" type="Texture" id=37]
 [ext_resource path="res://_raw/textures/ui/icon--train-car-laser-double--disabled.png" type="Texture" id=38]
 [ext_resource path="res://_raw/textures/ui/icon--train-car-laser-double--hover.png" type="Texture" id=39]
+[ext_resource path="res://_raw/textures/ui/bg-button-rectangle--normal.png" type="Texture" id=40]
+[ext_resource path="res://_raw/textures/ui/bg-button-rectangle--pressed.png" type="Texture" id=41]
+[ext_resource path="res://_raw/textures/ui/bg-button-rectangle--hover.png" type="Texture" id=42]
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.690205, 1 )
 colors = PoolColorArray( 0.105882, 0.113725, 0.129412, 1, 0.105882, 0.113725, 0.129412, 0.690196, 0.105882, 0.113725, 0.129412, 0 )
 
 [sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 6 )
+gradient = SubResource( 12 )
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0, 0, 0.403922 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 8 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 42 )
+region_rect = Rect2( 0, 0, 256, 64 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 41 )
+region_rect = Rect2( 0, 0, 256, 64 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 40 )
+region_rect = Rect2( 0, 0, 256, 64 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -260,3 +282,72 @@ texture_normal = ExtResource( 37 )
 texture_hover = ExtResource( 39 )
 texture_disabled = ExtResource( 38 )
 expand = true
+
+[node name="Centre" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="PauseMenu" type="Control" parent="Centre"]
+pause_mode = 2
+visible = false
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 532.0
+
+[node name="Overlay" type="Sprite" parent="Centre/PauseMenu"]
+position = Vector2( 960, 540 )
+scale = Vector2( 2.17969, 2504 )
+texture = SubResource( 7 )
+
+[node name="Panel" type="Panel" parent="Centre/PauseMenu"]
+margin_left = 800.0
+margin_top = 424.0
+margin_right = 1152.0
+margin_bottom = 768.0
+
+[node name="Label" type="Label" parent="Centre/PauseMenu/Panel"]
+margin_top = 32.0
+margin_right = 352.0
+margin_bottom = 72.0
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="Continue" type="Button" parent="Centre/PauseMenu/Panel"]
+margin_left = 48.0
+margin_top = 96.0
+margin_right = 304.0
+margin_bottom = 160.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Continue"
+
+[node name="ExitToMenu" type="Button" parent="Centre/PauseMenu/Panel"]
+margin_left = 48.0
+margin_top = 168.0
+margin_right = 304.0
+margin_bottom = 232.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Exit to menu"
+
+[node name="ExitGame" type="Button" parent="Centre/PauseMenu/Panel"]
+margin_left = 48.0
+margin_top = 240.0
+margin_right = 304.0
+margin_bottom = 304.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Exit game"
+
+[connection signal="pressed" from="Centre/PauseMenu/Panel/Continue" to="." method="on_pause_menu_continue_pressed"]
+[connection signal="pressed" from="Centre/PauseMenu/Panel/ExitToMenu" to="." method="on_exit_to_menu_button_pressed"]
+[connection signal="pressed" from="Centre/PauseMenu/Panel/ExitGame" to="." method="on_exit_game_button_pressed"]
