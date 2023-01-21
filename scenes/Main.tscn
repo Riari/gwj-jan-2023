@@ -116,5 +116,6 @@ script = ExtResource( 14 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -10 )
 shape = SubResource( 1 )
 
+[connection signal="requested_track" from="HUD" to="TrainController" method="on_hud_requested_track"]
 [connection signal="integrity_changed" from="TrainController" to="HUD" method="on_train_integrity_changed"]
 [connection signal="body_entered" from="Ground" to="Ground" method="on_body_entered"]

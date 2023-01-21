@@ -5,9 +5,7 @@ onready var start = get_node("../Start")
 onready var camera = get_node("../Camera")
 
 onready var track_segment_straight = preload("res://scenes/objects/track-straight.tscn")
-onready var track_segment_straight_ghost = preload("res://scenes/objects/track-straight--ghost.tscn")
 onready var track_segment_corner = preload("res://scenes/objects/track-corner.tscn")
-onready var track_segment_corner_ghost = preload("res://scenes/objects/track-corner--ghost.tscn")
 
 enum CAR_TYPE {
 	LOCOMOTIVE,
@@ -15,9 +13,8 @@ enum CAR_TYPE {
 }
 onready var train_locomotive = preload("res://scenes/objects/train-locomotive.tscn")
 onready var train_car_turret_small = preload("res://scenes/objects/train-car-turret-small.tscn")
-onready var train_car_turret_small_ghost = preload("res://scenes/objects/train-car-turret-small--ghost.tscn")
 
-var last_added_segment_index = -1
+var curve_last_extended_to_segment = -1
 var path = Path.new()
 var path_follows = []
 var cars = []
@@ -108,10 +105,10 @@ func update_curve(curve):
 	var segments = track.get_children()
 
 	# Assume track segments are ordered from closest to furthest
-	for i in range(last_added_segment_index + 1, segments.size(), 1):
+	for i in range(curve_last_extended_to_segment + 1, segments.size(), 1):
 		# Path points within a segment should also be in distance order
 		var points = segments[i].get_node("PathPoints").get_children()
-		last_added_segment_index = i
+		curve_last_extended_to_segment = i
 
 		# Determine which way to traverse the points - from last to first if the last point is closer, otherwise first to last
 		if points[points.size() - 1].global_translation.distance_to(path_end) < points[0].global_translation.distance_to(path_end):
@@ -132,3 +129,17 @@ func on_car_collision_detected(_car: Node, node: Node):
 		integrity -= 15
 		emit_signal("integrity_changed", old_integrity, integrity)
 		node.get_owner().explode()
+
+
+func on_hud_requested_track(_type: String):
+	# TODO: Replace with match statement to cover all types
+	var segment = track_segment_straight.instance()
+	var position = track.get_child(track.get_child_count() - 1).translation
+	var rotation = track.get_child(track.get_child_count() - 1).rotation_degrees
+
+	# TODO: Make this dynamic based on track direction
+	segment.translation = position
+	segment.rotation_degrees = rotation
+	segment.translation.z = position.z - 1.0
+	track.add_child(segment)
+	path.set_curve(update_curve(path.get_curve()))
