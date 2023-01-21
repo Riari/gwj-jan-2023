@@ -131,12 +131,11 @@ func update_curve(curve):
 
 func on_car_collision_detected(_car: Node, node: Node):
 	# TODO: don't hard-code damage
-	if node.is_in_group("enemy_projectile"):
+	if node.get_parent().is_in_group("projectile_enemy"):
 		var old_integrity = integrity
 		integrity -= 1
 		emit_signal("integrity_changed", old_integrity, integrity)
 		node.get_owner().explode()
-
 
 func on_hud_requested_track(_type: String):
 	# TODO: Replace with match statement to cover all types

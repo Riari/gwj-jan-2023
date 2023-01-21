@@ -3,7 +3,13 @@ extends Spatial
 onready var turret = get_node("Turret")
 onready var muzzle_points = get_node("Turret/MuzzlePoints").get_children()
 onready var audio_effects = get_node("Audio").get_children()
-onready var projectile = preload("res://scenes/objects/enemy-projectile-rocket.tscn")
+
+export(PackedScene) var projectile
+export(String, "player", "enemy") var target_group
+export(String, "projectile_player", "projectile_enemy") var projectile_group
+export(float) var projectile_scale_modifier = 1.0
+export(float) var volley_interval = 1.0 # seconds between volleys
+export(float) var projectile_interval = 0.1 # seconds between individual projectiles launching
 
 var rng = RandomNumberGenerator.new()
 
@@ -11,14 +17,12 @@ var rotation_speed = 0.1
 var targets = []
 var lead_target_index = -1
 
-var volley_interval = 1 # seconds between volleys
-var projectile_interval = 0.1 # seconds between individual projectiles launching
 var volley_timer = 0
 var projectile_timer = 0
 var muzzle_point_index = -1 # muzzle point to fire from next
 
 func _ready():
-	targets.resize(16) # needs to be large enough to contain the maximum number of train cars
+	targets.resize(16) # needs to be large enough to contain the maximum possible number of targets
 
 func _process(delta):
 	if lead_target_index == -1:
@@ -46,7 +50,7 @@ func _process(delta):
 		muzzle_point_index = -1
 
 func on_aggro_area_entered(node: Node):
-	if not node.get_parent().is_in_group("train"):
+	if not node.get_parent().is_in_group(target_group):
 		return
 
 	# Use the index of the car's PathFollow node
@@ -57,7 +61,7 @@ func on_aggro_area_entered(node: Node):
 		lead_target_index = node_index
 
 func on_aggro_area_exited(node: Node):
-	if not node.get_parent().is_in_group("train"):
+	if not node.get_parent().is_in_group(target_group):
 		return
 
 	# Use the index of the car's PathFollow node
@@ -70,7 +74,9 @@ func on_aggro_area_exited(node: Node):
 
 func fire(muzzle_point: int):
 	var p = projectile.instance()
+	p.add_to_group(projectile_group)
 	get_parent().add_child(p)
+	p.scale_model(projectile_scale_modifier)
 	p.global_transform = muzzle_points[muzzle_point].global_transform
 	p.global_rotation = muzzle_points[muzzle_point].global_rotation
 	p.launch()

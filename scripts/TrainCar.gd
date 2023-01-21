@@ -2,6 +2,8 @@ extends Spatial
 
 signal collision_detected(this, node)
 
+onready var turret_container = get_node("TurretContainer")
+
 var material
 var transitioning = false
 var transition_from = 1.0
@@ -13,9 +15,11 @@ func show():
 	visible = true
 
 	var children = get_children()
+	if turret_container:
+		children.append(turret_container.get_node("Turret/Model"))
 
 	for child in children:
-		if not child is MeshInstance:
+		if not child is MeshInstance or not child.visible:
 			continue
 
 		material = child.get_surface_material(0)
@@ -38,6 +42,8 @@ func _process(delta):
 
 func remove_materials():
 	var children = get_children()
+	if turret_container:
+		children.append(turret_container.get_node("Turret/Model"))
 
 	for child in children:
 		if not child is MeshInstance:

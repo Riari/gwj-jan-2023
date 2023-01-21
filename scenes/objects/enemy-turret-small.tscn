@@ -1,13 +1,23 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://_raw/models/enemy/turret-small.glb" type="PackedScene" id=1]
-[ext_resource path="res://scripts/EnemyTurret.gd" type="Script" id=2]
+[ext_resource path="res://scripts/WeaponTurret.gd" type="Script" id=2]
 [ext_resource path="res://_raw/models/enemy/custom5(Clone).material" type="Material" id=3]
 [ext_resource path="res://_raw/models/enemy/metalGreen(Clone).material" type="Material" id=4]
 [ext_resource path="res://_raw/models/enemy/dark(Clone).material" type="Material" id=5]
 [ext_resource path="res://_raw/audio/effects/rocket-fire-1.wav" type="AudioStream" id=6]
 [ext_resource path="res://_raw/audio/effects/rocket-fire-2.wav" type="AudioStream" id=7]
 [ext_resource path="res://_raw/audio/effects/rocket-fire-3.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/objects/projectile-rocket.tscn" type="PackedScene" id=9]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="SphereShape" id=5]
+radius = 0.592
+
+[sub_resource type="CylinderShape" id=1]
+radius = 2.0
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "turret-small_Mesh weapon_turretSmall Instance"
@@ -48,11 +58,7 @@ surfaces/2 = {
 "vertex_count": 209
 }
 
-[sub_resource type="CylinderShape" id=1]
-radius = 2.0
-
-[node name="turret-small" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="turret-small" groups=["enemy"] instance=ExtResource( 1 )]
 
 [node name="block_taper" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -60,42 +66,62 @@ transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
 [node name="tank_turretRing" parent="." index="1"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0 )
 
-[node name="Turret" type="Spatial" parent="." index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0 )
+[node name="weapon_turretSmall" parent="." index="2"]
+visible = false
 
-[node name="Model" type="MeshInstance" parent="Turret" index="0"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-mesh = SubResource( 3 )
-skeleton = NodePath("../..")
+[node name="StaticBody" type="StaticBody" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0 )
 
-[node name="MuzzlePoints" type="Spatial" parent="Turret" index="1"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0731685, -0.311 )
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0447293, 0 )
+shape = SubResource( 4 )
 
-[node name="0" type="Spatial" parent="Turret/MuzzlePoints" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099481, 0.00277543, 0 )
+[node name="BoundingArea" type="Area" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0 )
 
-[node name="1" type="Spatial" parent="Turret/MuzzlePoints" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0996161, 0.00382555, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="BoundingArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.235743, 0 )
+shape = SubResource( 5 )
 
-[node name="AggroArea" type="Area" parent="." index="3"]
+[node name="AggroArea" type="Area" parent="." index="5"]
 
 [node name="CollisionShape" type="CollisionShape" parent="AggroArea" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 1 )
 
-[node name="weapon_turretSmall" parent="." index="4"]
-visible = false
+[node name="TurretContainer" type="Spatial" parent="." index="6"]
+script = ExtResource( 2 )
+projectile = ExtResource( 9 )
+target_group = "player"
+projectile_group = "projectile_enemy"
 
-[node name="Audio" type="Spatial" parent="." index="5"]
+[node name="Turret" type="Spatial" parent="TurretContainer" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0 )
 
-[node name="Fire1" type="AudioStreamPlayer3D" parent="Audio" index="0"]
+[node name="Model" type="MeshInstance" parent="TurretContainer/Turret" index="0"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../..")
+
+[node name="MuzzlePoints" type="Spatial" parent="TurretContainer/Turret" index="1"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0731685, -0.311 )
+
+[node name="0" type="Spatial" parent="TurretContainer/Turret/MuzzlePoints" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099481, 0.00277543, 0 )
+
+[node name="1" type="Spatial" parent="TurretContainer/Turret/MuzzlePoints" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0996161, 0.00382555, 0 )
+
+[node name="Audio" type="Spatial" parent="TurretContainer" index="1"]
+
+[node name="Fire1" type="AudioStreamPlayer3D" parent="TurretContainer/Audio" index="0"]
 stream = ExtResource( 6 )
 
-[node name="Fire2" type="AudioStreamPlayer3D" parent="Audio" index="1"]
+[node name="Fire2" type="AudioStreamPlayer3D" parent="TurretContainer/Audio" index="1"]
 stream = ExtResource( 7 )
 
-[node name="Fire3" type="AudioStreamPlayer3D" parent="Audio" index="2"]
+[node name="Fire3" type="AudioStreamPlayer3D" parent="TurretContainer/Audio" index="2"]
 stream = ExtResource( 8 )
 
-[connection signal="body_entered" from="AggroArea" to="." method="on_aggro_area_entered"]
-[connection signal="body_exited" from="AggroArea" to="." method="on_aggro_area_exited"]
+[connection signal="body_entered" from="AggroArea" to="TurretContainer" method="on_aggro_area_entered"]
+[connection signal="body_exited" from="AggroArea" to="TurretContainer" method="on_aggro_area_exited"]
