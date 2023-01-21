@@ -7,7 +7,7 @@ onready var audio_effects = get_node("Audio").get_children()
 export(PackedScene) var projectile
 export(String, "player", "enemy") var target_group
 
-# Targeting mode: prioritise newest or oldest target to enter aggro radius
+# Targeting mode: pick oldest or newest node to enter aggro radius
 enum TargetingMode { OLDEST, NEWEST }
 export(TargetingMode) var targeting_mode
 
@@ -21,21 +21,18 @@ export(float) var projectile_interval = 0.1 # seconds between individual project
 var rng = RandomNumberGenerator.new()
 
 var rotation_speed = 0.1
-var targets = []
-var lead_target_index = -1
+var targets = {}
+var target_id = -1
 
 var volley_timer = 0
 var projectile_timer = 0
 var muzzle_point_index = -1 # muzzle point to fire from next
 
-func _ready():
-	targets.resize(16) # needs to be large enough to contain the maximum possible number of targets
-
 func _process(delta):
-	if lead_target_index == -1:
+	if target_id == -1:
 		return
 
-	var transform = turret.global_transform.looking_at(targets[lead_target_index].global_transform.origin, Vector3.UP)
+	var transform = turret.global_transform.looking_at(targets[target_id].global_transform.origin, Vector3.UP)
 	var rotation = Quat(turret.global_transform.basis).slerp(Quat(transform.basis), rotation_speed)
 	turret.global_transform = Transform(Basis(rotation), turret.global_transform.origin)
 
@@ -60,31 +57,30 @@ func on_aggro_area_entered(node: Node):
 	if not node.get_parent().is_in_group(target_group):
 		return
 
-	# Use the index of the car's PathFollow node
-	var node_index = node.get_parent().get_parent().get_index()
-	targets[node_index] = node.get_parent()
+	var instance_id = node.get_instance_id()
+	targets[instance_id] = node.get_parent()
 
-	if lead_target_index == -1 or targeting_mode == TargetingMode.NEWEST:
-		lead_target_index = node_index
+	if target_id == -1 or targeting_mode == TargetingMode.NEWEST:
+		target_id = instance_id
 
 func on_aggro_area_exited(node: Node):
 	if not node.get_parent().is_in_group(target_group):
 		return
 
-	# Use the index of the car's PathFollow node
-	var node_index = node.get_parent().get_parent().get_index()
+	var instance_id = node.get_instance_id()
+	targets.erase(instance_id)
 
-	if targeting_mode == TargetingMode.NEWEST:
-		if lead_target_index == node_index:
-			targets[node_index] = null
-			lead_target_index = -1
-			print("disengaging")
-	elif targeting_mode == TargetingMode.OLDEST:
-		targets[node_index] = null
-		lead_target_index += 1
+	if targets.size() == 0:
+		target_id = -1
+		return
 
-		if targets[lead_target_index] == null:
-			lead_target_index = -1
+	if instance_id == target_id:
+		# Find a new target based on the targeting mode
+		match targeting_mode:
+			TargetingMode.NEWEST:
+				target_id = targets.keys()[targets.size() - 1]
+			TargetingMode.OLDEST:
+				target_id = targets.keys()[0]
 
 func fire(muzzle_point: int):
 	var p = projectile.instance()
