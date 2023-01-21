@@ -1,17 +1,30 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-progress-64px.png" type="Texture" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
-[ext_resource path="res://scripts/HUD.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ui/HUD.gd" type="Script" id=3]
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-under-64px.png" type="Texture" id=4]
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-over-64px.png" type="Texture" id=5]
+[ext_resource path="res://_raw/textures/ui/bg-top-centre.png" type="Texture" id=6]
+[ext_resource path="res://_raw/textures/ui/icon--track-straight-EW--normal.png" type="Texture" id=7]
+[ext_resource path="res://_raw/textures/ui/icon--track-straight-EW--hover.png" type="Texture" id=8]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-EN--normal.png" type="Texture" id=9]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-EN--hover.png" type="Texture" id=10]
+[ext_resource path="res://_raw/textures/ui/icon--track-straight-N--normal.png" type="Texture" id=11]
+[ext_resource path="res://_raw/textures/ui/icon--track-straight-N--hover.png" type="Texture" id=12]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-SW--hover.png" type="Texture" id=13]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-SW--normal.png" type="Texture" id=14]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-SE--hover.png" type="Texture" id=15]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-SE--normal.png" type="Texture" id=16]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-WN--hover.png" type="Texture" id=17]
+[ext_resource path="res://_raw/textures/ui/icon--track-corner-WN--normal.png" type="Texture" id=18]
 
-[sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0.0022779, 0.514806, 1 )
-colors = PoolColorArray( 0.117647, 0.133333, 0.160784, 0.788235, 0.117647, 0.133333, 0.160784, 0.750443, 0.117647, 0.133333, 0.160784, 0 )
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.690205, 1 )
+colors = PoolColorArray( 0.105882, 0.113725, 0.129412, 1, 0.105882, 0.113725, 0.129412, 0.690196, 0.105882, 0.113725, 0.129412, 0 )
 
 [sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+gradient = SubResource( 6 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -19,31 +32,34 @@ anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="LowerLeft" type="Control" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-
-[node name="TrainIntegrity" type="Control" parent="LowerLeft"]
+[node name="TopCentre" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Background" type="Sprite" parent="LowerLeft/TrainIntegrity"]
-position = Vector2( 192, -48 )
-scale = Vector2( 0.1875, 96.0001 )
-texture = SubResource( 5 )
+[node name="TrainIntegrity" type="Control" parent="TopCentre"]
+margin_left = -168.0
+margin_top = 96.0
+margin_right = -128.0
+margin_bottom = 136.0
 
-[node name="Label" type="RichTextLabel" parent="LowerLeft/TrainIntegrity"]
-margin_left = 24.0
-margin_top = -80.0
-margin_right = 316.0
-margin_bottom = -38.0
+[node name="Background" type="Sprite" parent="TopCentre/TrainIntegrity"]
+position = Vector2( 168, -32 )
+scale = Vector2( 1.06667, 0.914286 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="RichTextLabel" parent="TopCentre/TrainIntegrity"]
+margin_left = 80.0
+margin_top = -40.0
+margin_right = 256.0
 text = " Train Integrity"
 
-[node name="Bar" type="TextureProgress" parent="LowerLeft/TrainIntegrity"]
+[node name="Bar" type="TextureProgress" parent="TopCentre/TrainIntegrity"]
 margin_left = 24.0
-margin_top = -48.0
+margin_top = -80.0
 margin_right = 312.0
-margin_bottom = -16.0
+margin_bottom = -48.0
 value = 50.0
 texture_under = ExtResource( 4 )
 texture_over = ExtResource( 5 )
@@ -55,3 +71,93 @@ stretch_margin_left = 10
 stretch_margin_top = 10
 stretch_margin_right = 10
 stretch_margin_bottom = 10
+
+[node name="LeftFullHeight" type="Control" parent="."]
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BottomLeft" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+
+[node name="BottomCentre" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BuildMenu" type="Control" parent="BottomCentre"]
+margin_left = -1410.0
+margin_top = -1088.0
+margin_right = -960.0
+margin_bottom = 8.0
+
+[node name="Background" type="Sprite" parent="BottomCentre/BuildMenu"]
+position = Vector2( 1410, 980.433 )
+rotation = -1.5708
+scale = Vector2( 0.104804, 4397.37 )
+texture = SubResource( 5 )
+
+[node name="TrackSegmentsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
+margin_left = 850.0
+margin_top = 952.0
+margin_right = 1106.0
+margin_bottom = 992.0
+text = "Track segments"
+
+[node name="ButtonTrackStraightN" type="TextureButton" parent="BottomCentre/BuildMenu"]
+margin_left = 850.0
+margin_top = 1000.0
+margin_right = 914.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 11 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="ButtonTrackStraightEW" type="TextureButton" parent="BottomCentre/BuildMenu"]
+margin_left = 930.0
+margin_top = 1000.0
+margin_right = 994.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="ButtonTrackCornerSW" type="TextureButton" parent="BottomCentre/BuildMenu"]
+margin_left = 1010.0
+margin_top = 1000.0
+margin_right = 1074.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
+expand = true
+
+[node name="ButtonTrackCornerSE" type="TextureButton" parent="BottomCentre/BuildMenu"]
+margin_left = 1090.0
+margin_top = 1000.0
+margin_right = 1154.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 16 )
+texture_hover = ExtResource( 15 )
+expand = true
+
+[node name="ButtonTrackCornerWN" type="TextureButton" parent="BottomCentre/BuildMenu"]
+margin_left = 1170.0
+margin_top = 1000.0
+margin_right = 1234.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 18 )
+texture_hover = ExtResource( 17 )
+expand = true
+
+[node name="ButtonTrackCornerEN" type="TextureButton" parent="BottomCentre/BuildMenu"]
+margin_left = 1250.0
+margin_top = 1000.0
+margin_right = 1314.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true

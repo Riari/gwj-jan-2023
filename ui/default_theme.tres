@@ -1,6 +1,27 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://ui/fonts/bebas-neue.tres" type="DynamicFont" id=1]
+[ext_resource path="res://_raw/textures/ui/bg-button-square--pressed.png" type="Texture" id=2]
+[ext_resource path="res://_raw/textures/ui/bg-button-square--normal.png" type="Texture" id=3]
+[ext_resource path="res://_raw/textures/ui/bg-button-square--hover.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [resource]
 default_font = ExtResource( 1 )
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 3 )

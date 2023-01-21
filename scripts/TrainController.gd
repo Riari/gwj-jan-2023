@@ -5,7 +5,9 @@ onready var start = get_node("../Start")
 onready var camera = get_node("../Camera")
 
 onready var track_segment_straight = preload("res://scenes/objects/track-straight.tscn")
+onready var track_segment_straight_ghost = preload("res://scenes/objects/track-straight--ghost.tscn")
 onready var track_segment_corner = preload("res://scenes/objects/track-corner.tscn")
+onready var track_segment_corner_ghost = preload("res://scenes/objects/track-corner--ghost.tscn")
 
 enum CAR_TYPE {
 	LOCOMOTIVE,
@@ -13,6 +15,7 @@ enum CAR_TYPE {
 }
 onready var train_locomotive = preload("res://scenes/objects/train-locomotive.tscn")
 onready var train_car_turret_small = preload("res://scenes/objects/train-car-turret-small.tscn")
+onready var train_car_turret_small_ghost = preload("res://scenes/objects/train-car-turret-small--ghost.tscn")
 
 var last_added_segment_index = -1
 var path = Path.new()
