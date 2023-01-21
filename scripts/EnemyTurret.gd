@@ -72,7 +72,7 @@ func fire(muzzle_point: int):
 	var p = projectile.instance()
 	get_parent().add_child(p)
 	p.global_transform = muzzle_points[muzzle_point].global_transform
-	p.look_at(targets[lead_target_index].global_transform.origin, Vector3.UP)
+	p.global_rotation = muzzle_points[muzzle_point].global_rotation
 	p.launch()
 
 	rng.randomize()

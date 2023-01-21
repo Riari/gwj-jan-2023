@@ -111,8 +111,6 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 
 [node name="turret-small" parent="Grid/Enemy" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4.5 )
 
-[node name="Train" type="Spatial" parent="."]
-
 [node name="logo" parent="." instance=ExtResource( 12 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, -2 )
 visible = false
