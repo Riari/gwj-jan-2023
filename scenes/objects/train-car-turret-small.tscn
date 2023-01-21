@@ -109,6 +109,7 @@ shape = SubResource( 6 )
 script = ExtResource( 10 )
 projectile = ExtResource( 11 )
 target_group = "enemy"
+targeting_mode = 1
 projectile_group = "projectile_player"
 projectile_scale_modifier = 0.5
 projectile_interval = 0.2
@@ -143,6 +144,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766233, -0.732872, 0.276577
 
 [node name="Fire1" type="AudioStreamPlayer3D" parent="TurretContainer/Audio" index="0"]
 stream = ExtResource( 8 )
+attenuation_filter_db = -8.7
 
 [node name="Fire2" type="AudioStreamPlayer3D" parent="TurretContainer/Audio" index="1"]
 stream = ExtResource( 9 )

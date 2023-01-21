@@ -123,18 +123,18 @@ scale = Vector2( 0.104804, 4397.37 )
 texture = SubResource( 5 )
 
 [node name="TrackSegmentsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
-margin_left = 852.0
-margin_top = 928.0
-margin_right = 1108.0
-margin_bottom = 968.0
+margin_left = 972.0
+margin_top = 936.0
+margin_right = 1228.0
+margin_bottom = 976.0
 rect_pivot_offset = Vector2( -1120, -288 )
 text = "Track segments"
 
 [node name="TrackSegments" type="Control" parent="BottomCentre/BuildMenu"]
-margin_left = 2.0
-margin_top = -24.0
-margin_right = 42.0
-margin_bottom = 16.0
+margin_left = 122.0
+margin_top = -16.0
+margin_right = 162.0
+margin_bottom = 24.0
 
 [node name="StraightN" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
 margin_left = 850.0
@@ -198,18 +198,18 @@ texture_disabled = ExtResource( 24 )
 expand = true
 
 [node name="TrainCarsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
-margin_left = 1348.0
-margin_top = 928.0
-margin_right = 1604.0
-margin_bottom = 968.0
+margin_left = 1468.0
+margin_top = 936.0
+margin_right = 1724.0
+margin_bottom = 976.0
 rect_pivot_offset = Vector2( -1120, -288 )
 text = "Train cars"
 
 [node name="TrainCars" type="Control" parent="BottomCentre/BuildMenu"]
-margin_left = 2.0
-margin_top = -24.0
-margin_right = 42.0
-margin_bottom = 16.0
+margin_left = 122.0
+margin_top = -16.0
+margin_right = 162.0
+margin_bottom = 24.0
 
 [node name="TurretSmall" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
 margin_left = 1346.0

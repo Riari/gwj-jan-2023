@@ -6,7 +6,14 @@ onready var audio_effects = get_node("Audio").get_children()
 
 export(PackedScene) var projectile
 export(String, "player", "enemy") var target_group
+
+# Targeting mode: prioritise newest or oldest target to enter aggro radius
+enum TargetingMode { OLDEST, NEWEST }
+export(TargetingMode) var targeting_mode
+
+# Group to assign to new projectile instances
 export(String, "projectile_player", "projectile_enemy") var projectile_group
+
 export(float) var projectile_scale_modifier = 1.0
 export(float) var volley_interval = 1.0 # seconds between volleys
 export(float) var projectile_interval = 0.1 # seconds between individual projectiles launching
@@ -57,7 +64,7 @@ func on_aggro_area_entered(node: Node):
 	var node_index = node.get_parent().get_parent().get_index()
 	targets[node_index] = node.get_parent()
 
-	if lead_target_index == -1:
+	if lead_target_index == -1 or targeting_mode == TargetingMode.NEWEST:
 		lead_target_index = node_index
 
 func on_aggro_area_exited(node: Node):
@@ -66,11 +73,18 @@ func on_aggro_area_exited(node: Node):
 
 	# Use the index of the car's PathFollow node
 	var node_index = node.get_parent().get_parent().get_index()
-	targets[node_index] = null
-	lead_target_index += 1
 
-	if targets[lead_target_index] == null:
-		lead_target_index = -1
+	if targeting_mode == TargetingMode.NEWEST:
+		if lead_target_index == node_index:
+			targets[node_index] = null
+			lead_target_index = -1
+			print("disengaging")
+	elif targeting_mode == TargetingMode.OLDEST:
+		targets[node_index] = null
+		lead_target_index += 1
+
+		if targets[lead_target_index] == null:
+			lead_target_index = -1
 
 func fire(muzzle_point: int):
 	var p = projectile.instance()
