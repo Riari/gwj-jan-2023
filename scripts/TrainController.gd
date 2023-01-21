@@ -23,6 +23,8 @@ var last_car_path_offset = 0.0
 var distance_between_cars = 0.5 # in terms of the PathFollow offset value
 var path_end
 var moving = true
+var spawn_second_car_delay = 0.5
+var spawn_Second_car_timer = 0.0
 
 var integrity = 100
 
@@ -50,6 +52,11 @@ func _input(_event):
 func _process(delta):
 	if car_count == 0:
 		return
+
+	if car_count == 1:
+		spawn_Second_car_timer += delta
+		if spawn_Second_car_timer >= spawn_second_car_delay:
+			spawn_car(CAR_TYPE.TURRET_SMALL)
 
 	if path_follows[0].unit_offset == 1.0:
 		# Locomotive has reached the end of the track
@@ -126,7 +133,7 @@ func on_car_collision_detected(_car: Node, node: Node):
 	# TODO: don't hard-code damage
 	if node.is_in_group("enemy_projectile"):
 		var old_integrity = integrity
-		integrity -= 15
+		integrity -= 1
 		emit_signal("integrity_changed", old_integrity, integrity)
 		node.get_owner().explode()
 
@@ -143,3 +150,8 @@ func on_hud_requested_track(_type: String):
 	segment.translation.z = position.z - 1.0
 	track.add_child(segment)
 	path.set_curve(update_curve(path.get_curve()))
+
+func on_hud_requested_car(type: String):
+	match type:
+		"TurretSmall":
+			spawn_car(CAR_TYPE.TURRET_SMALL)

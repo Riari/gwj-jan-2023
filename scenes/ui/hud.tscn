@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-progress-64px.png" type="Texture" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -24,6 +24,21 @@
 [ext_resource path="res://_raw/textures/ui/icon--track-corner-SE--disabled.png" type="Texture" id=22]
 [ext_resource path="res://_raw/textures/ui/icon--track-corner-SW--disabled.png" type="Texture" id=23]
 [ext_resource path="res://_raw/textures/ui/icon--track-corner-EN--disabled.png" type="Texture" id=24]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-small--hover.png" type="Texture" id=25]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-small--normal.png" type="Texture" id=26]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-small--disabled.png" type="Texture" id=27]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-large--normal.png" type="Texture" id=28]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-large--hover.png" type="Texture" id=29]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-large--disabled.png" type="Texture" id=30]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-incendiary--normal.png" type="Texture" id=31]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-incendiary--hover.png" type="Texture" id=32]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-turret-incendiary--disabled.png" type="Texture" id=33]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-laser-single--normal.png" type="Texture" id=34]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-laser-single--hover.png" type="Texture" id=35]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-laser-single--disabled.png" type="Texture" id=36]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-laser-double--normal.png" type="Texture" id=37]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-laser-double--disabled.png" type="Texture" id=38]
+[ext_resource path="res://_raw/textures/ui/icon--train-car-laser-double--hover.png" type="Texture" id=39]
 
 [sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.690205, 1 )
@@ -108,21 +123,25 @@ scale = Vector2( 0.104804, 4397.37 )
 texture = SubResource( 5 )
 
 [node name="TrackSegmentsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
-margin_left = 850.0
-margin_top = 952.0
-margin_right = 1106.0
-margin_bottom = 992.0
+margin_left = 852.0
+margin_top = 928.0
+margin_right = 1108.0
+margin_bottom = 968.0
+rect_pivot_offset = Vector2( -1120, -288 )
 text = "Track segments"
 
 [node name="TrackSegments" type="Control" parent="BottomCentre/BuildMenu"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 2.0
+margin_top = -24.0
+margin_right = 42.0
+margin_bottom = 16.0
 
 [node name="StraightN" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
 margin_left = 850.0
 margin_top = 1000.0
 margin_right = 914.0
 margin_bottom = 1064.0
+hint_tooltip = "Test"
 texture_normal = ExtResource( 11 )
 texture_hover = ExtResource( 12 )
 texture_disabled = ExtResource( 19 )
@@ -176,4 +195,68 @@ margin_bottom = 1064.0
 texture_normal = ExtResource( 9 )
 texture_hover = ExtResource( 10 )
 texture_disabled = ExtResource( 24 )
+expand = true
+
+[node name="TrainCarsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
+margin_left = 1348.0
+margin_top = 928.0
+margin_right = 1604.0
+margin_bottom = 968.0
+rect_pivot_offset = Vector2( -1120, -288 )
+text = "Train cars"
+
+[node name="TrainCars" type="Control" parent="BottomCentre/BuildMenu"]
+margin_left = 2.0
+margin_top = -24.0
+margin_right = 42.0
+margin_bottom = 16.0
+
+[node name="TurretSmall" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
+margin_left = 1346.0
+margin_top = 1000.0
+margin_right = 1410.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 26 )
+texture_hover = ExtResource( 25 )
+texture_disabled = ExtResource( 27 )
+expand = true
+
+[node name="TurretLarge" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
+margin_left = 1426.0
+margin_top = 1000.0
+margin_right = 1490.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 28 )
+texture_hover = ExtResource( 29 )
+texture_disabled = ExtResource( 30 )
+expand = true
+
+[node name="TurretIncendiary" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
+margin_left = 1506.0
+margin_top = 1000.0
+margin_right = 1570.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 31 )
+texture_hover = ExtResource( 32 )
+texture_disabled = ExtResource( 33 )
+expand = true
+
+[node name="LaserSingle" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
+margin_left = 1586.0
+margin_top = 1000.0
+margin_right = 1650.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 34 )
+texture_hover = ExtResource( 35 )
+texture_disabled = ExtResource( 36 )
+expand = true
+
+[node name="LaserDouble" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
+margin_left = 1666.0
+margin_top = 1000.0
+margin_right = 1730.0
+margin_bottom = 1064.0
+texture_normal = ExtResource( 37 )
+texture_hover = ExtResource( 39 )
+texture_disabled = ExtResource( 38 )
 expand = true

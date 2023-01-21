@@ -68,8 +68,14 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../..")
 
-[node name="Muzzle" type="Spatial" parent="Turret" index="1"]
+[node name="MuzzlePoints" type="Spatial" parent="Turret" index="1"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0731685, -0.311 )
+
+[node name="0" type="Spatial" parent="Turret/MuzzlePoints" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099481, 0.00277543, 0 )
+
+[node name="1" type="Spatial" parent="Turret/MuzzlePoints" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0996161, 0.00382555, 0 )
 
 [node name="AggroArea" type="Area" parent="." index="3"]
 

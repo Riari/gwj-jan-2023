@@ -94,9 +94,24 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 
 [node name="track-straight4" parent="Grid/Track" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -2 )
 
+[node name="track-straight5" parent="Grid/Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -3 )
+
+[node name="track-straight6" parent="Grid/Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -4 )
+
+[node name="track-straight7" parent="Grid/Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -5 )
+
+[node name="track-straight8" parent="Grid/Track" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -6 )
+
 [node name="Enemy" type="Spatial" parent="Grid"]
 
-[node name="turret-small" parent="." instance=ExtResource( 3 )]
+[node name="turret-small" parent="Grid/Enemy" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4.5 )
+
+[node name="Train" type="Spatial" parent="."]
 
 [node name="logo" parent="." instance=ExtResource( 12 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, -2 )
@@ -116,6 +131,7 @@ script = ExtResource( 14 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -10 )
 shape = SubResource( 1 )
 
+[connection signal="requested_car" from="HUD" to="TrainController" method="on_hud_requested_car"]
 [connection signal="requested_track" from="HUD" to="TrainController" method="on_hud_requested_track"]
 [connection signal="integrity_changed" from="TrainController" to="HUD" method="on_train_integrity_changed"]
 [connection signal="body_entered" from="Ground" to="Ground" method="on_body_entered"]
