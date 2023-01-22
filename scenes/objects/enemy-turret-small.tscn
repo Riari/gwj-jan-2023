@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://_raw/models/enemy/turret-small.glb" type="PackedScene" id=1]
 [ext_resource path="res://scripts/WeaponTurret.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://_raw/audio/effects/rocket-fire-3.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/objects/projectile-rocket.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ui/3d-progress-bar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/EnemyStructure.gd" type="Script" id=11]
+[ext_resource path="res://_raw/audio/effects/zapsplat_explosion_big_fireball_001_89751.mp3" type="AudioStream" id=12]
+[ext_resource path="res://_raw/audio/effects/zapsplat_explosion_big_fireball_002_89752.mp3" type="AudioStream" id=13]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 0.5, 0.5, 0.5 )
@@ -60,6 +63,7 @@ surfaces/2 = {
 }
 
 [node name="turret-small" groups=["enemy"] instance=ExtResource( 1 )]
+script = ExtResource( 11 )
 
 [node name="3DProgressBar" parent="." index="0" instance=ExtResource( 10 )]
 
@@ -92,7 +96,17 @@ shape = SubResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 1 )
 
-[node name="TurretContainer" type="Spatial" parent="." index="7"]
+[node name="Audio" type="Spatial" parent="." index="7"]
+
+[node name="Explosions" type="Spatial" parent="Audio" index="0"]
+
+[node name="Explode1" type="AudioStreamPlayer3D" parent="Audio/Explosions" index="0"]
+stream = ExtResource( 12 )
+
+[node name="Explode2" type="AudioStreamPlayer3D" parent="Audio/Explosions" index="1"]
+stream = ExtResource( 13 )
+
+[node name="TurretContainer" type="Spatial" parent="." index="8"]
 script = ExtResource( 2 )
 projectile = ExtResource( 9 )
 target_group = "player"
@@ -126,5 +140,6 @@ stream = ExtResource( 7 )
 [node name="Fire3" type="AudioStreamPlayer3D" parent="TurretContainer/Audio" index="2"]
 stream = ExtResource( 8 )
 
+[connection signal="body_entered" from="BoundingArea" to="." method="on_body_entered"]
 [connection signal="body_entered" from="AggroArea" to="TurretContainer" method="on_aggro_area_entered"]
 [connection signal="body_exited" from="AggroArea" to="TurretContainer" method="on_aggro_area_exited"]

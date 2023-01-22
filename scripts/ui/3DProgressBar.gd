@@ -1,12 +1,14 @@
 extends Sprite3D
 
-export(int) var min_value
+onready var bar = get_node("Viewport/TextureProgress")
+
+export(int) var min_value = 0
 export(int) var max_value = 100
 
 func _ready():
 	texture = $Viewport.get_texture()
-	$Viewport/TextureProgress.min_value = min_value
-	$Viewport/TextureProgress.max_value = max_value
+	bar.min_value = min_value
+	bar.max_value = max_value
 
 func set_value(value: int):
-	$Viewport/TextureProgress.value = value
+	bar.value = value

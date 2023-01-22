@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_explosion_big_fireball_001_89751.mp3-cb20a8fe929a73cc3c3cbc88a08106c8.mp3str"
+
+[deps]
+
+source_file="res://_raw/audio/effects/zapsplat_explosion_big_fireball_001_89751.mp3"
+dest_files=[ "res://.import/zapsplat_explosion_big_fireball_001_89751.mp3-cb20a8fe929a73cc3c3cbc88a08106c8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
