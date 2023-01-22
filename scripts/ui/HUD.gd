@@ -25,6 +25,11 @@ var valid_tracks = {
 
 var end_track_direction: int = 0
 
+var track_placed_cooldown = false
+var track_placed_cooldown_interval = 0.65
+var track_placed_cooldown_timer = 0.0
+var track_buttons_enabled = []
+
 var money_amount = 0
 
 func _ready():
@@ -40,6 +45,16 @@ func _ready():
 		button.connect("pressed", self, "on_train_car_button_pressed", [button.name])
 
 func _process(delta):
+	if track_placed_cooldown:
+		track_placed_cooldown_timer += delta
+
+		if track_placed_cooldown_timer >= track_placed_cooldown_interval:
+			for i in track_buttons_enabled:
+				track_segment_buttons[i].disabled = false
+
+			track_placed_cooldown_timer = 0.0
+			track_placed_cooldown = false
+
 	if not countdown.visible or countdown_timer <= 0.0:
 		return
 
@@ -123,6 +138,8 @@ func on_next_track_position_changed(position: Vector3):
 			if not is_north_valid: track_segment_buttons[4].disabled = true
 			if not is_west_valid: track_segment_buttons[1].disabled = true
 
+	cooldown()
+
 func on_enemy_structure_destroyed():
 	# TODO: don't hard-code money
 	money_amount += 500
@@ -133,6 +150,17 @@ func on_enemy_structure_destroyed():
 
 func on_approaching_track_end():
 	start_track_end_warning()
+
+func cooldown():
+	track_buttons_enabled.clear()
+	for i in track_segment_buttons.size():
+		var button = track_segment_buttons[i]
+		if not button.disabled:
+			track_buttons_enabled.append(i)
+
+		button.disabled = true
+
+	track_placed_cooldown = true
 
 func start_track_end_warning():
 	warning_approacing_track_end_panel.visible = true

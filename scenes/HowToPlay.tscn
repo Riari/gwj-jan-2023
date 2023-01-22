@@ -130,7 +130,7 @@ margin_right = 996.0
 margin_bottom = 679.0
 custom_fonts/font = ExtResource( 18 )
 text = "Lay track segments to extend the track before your train reaches the end of it.
-Your track can only go north, east, or west.
+Your track can only go north, east, or west. Placing track has a cooldown.
 Choose carefully - some routes are more dangerous than others!"
 
 [node name="Grid" type="Spatial" parent="."]
