@@ -7,6 +7,7 @@ onready var train_integrity_bar: TextureProgress = get_node("TopCentre/TrainInte
 onready var track_segment_buttons = get_node("BottomCentre/BuildMenu/TrackSegments").get_children()
 onready var train_car_buttons = get_node("BottomCentre/BuildMenu/TrainCars").get_children()
 onready var pause_menu = get_node("Centre/PauseMenu")
+onready var game_lost_menu = get_node("Centre/GameOver")
 
 func _ready():
 	train_integrity_bar.value = 100
@@ -39,3 +40,13 @@ func on_exit_to_menu_button_pressed():
 
 func on_exit_game_button_pressed():
 	get_tree().quit()
+
+func on_game_over_restart_pressed():
+	get_tree().reload_current_scene()
+
+func on_game_won():
+	pass # Replace with function body.
+
+func on_game_lost():
+	get_tree().paused = true
+	game_lost_menu.visible = true

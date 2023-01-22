@@ -3,6 +3,7 @@ extends Node
 onready var track = get_node("../Grid/Track")
 onready var start = get_node("../Start")
 onready var camera = get_node("../Camera")
+onready var win_loss_controller = get_node("../WinLossController")
 
 onready var track_segment_straight = preload("res://scenes/objects/track-straight.tscn")
 onready var track_segment_corner = preload("res://scenes/objects/track-corner.tscn")
@@ -60,7 +61,7 @@ func _process(delta):
 
 	if path_follows[0].unit_offset == 1.0:
 		# Locomotive has reached the end of the track
-		# TODO: losing condition - show retry/exit menu and maybe derail the train for fun?
+		# win_loss_controller.trigger_loss()
 		moving = false
 
 	if not moving:
@@ -136,6 +137,9 @@ func on_car_collision_detected(_car: Node, node: Node):
 		integrity -= 1
 		emit_signal("integrity_changed", old_integrity, integrity)
 		node.get_owner().explode()
+
+		if integrity <= 0:
+			win_loss_controller.trigger_loss()
 
 func on_hud_requested_track(_type: String):
 	# TODO: Replace with match statement to cover all types
