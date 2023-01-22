@@ -21,11 +21,12 @@ var path_follows = []
 var cars = []
 var car_count = 0
 var last_car_path_offset = 0.0
+var movement_speed = 0.85
 var distance_between_cars = 0.5 # in terms of the PathFollow offset value
 var path_end
 var moving = true
 var spawn_second_car_delay = 0.5
-var spawn_Second_car_timer = 0.0
+var spawn_second_car_timer = 0.0
 
 var integrity = 100
 
@@ -55,8 +56,8 @@ func _process(delta):
 		return
 
 	if car_count == 1:
-		spawn_Second_car_timer += delta
-		if spawn_Second_car_timer >= spawn_second_car_delay:
+		spawn_second_car_timer += delta
+		if spawn_second_car_timer >= spawn_second_car_delay:
 			spawn_car(CAR_TYPE.TURRET_SMALL)
 
 	if path_follows[0].unit_offset == 1.0:
@@ -68,7 +69,7 @@ func _process(delta):
 		return
 
 	for i in path_follows.size():
-		path_follows[i].offset += delta
+		path_follows[i].offset += movement_speed * delta
 		if i == path_follows.size() - 1:
 			# Record the last car's PathFollow offset
 			last_car_path_offset = path_follows[i].offset
