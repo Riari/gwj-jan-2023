@@ -1,5 +1,6 @@
 extends Spatial
 
+onready var scene_root = get_node("/root")
 onready var turret = get_node("Turret")
 onready var muzzle_points = get_node("Turret/MuzzlePoints").get_children()
 onready var audio_effects = get_node("Audio").get_children()
@@ -85,7 +86,7 @@ func on_aggro_area_exited(node: Node):
 func fire(muzzle_point: int):
 	var p = projectile.instance()
 	p.add_to_group(projectile_group)
-	get_parent().add_child(p)
+	scene_root.add_child(p)
 	p.scale_model(projectile_scale_modifier)
 	p.global_transform = muzzle_points[muzzle_point].global_transform
 	p.global_rotation = muzzle_points[muzzle_point].global_rotation
