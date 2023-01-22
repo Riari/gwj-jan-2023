@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://meshes/libraries/scenery.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://environments/night.tres" type="Environment" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://ui/fonts/bebas-neue-large.tres" type="DynamicFont" id=11]
 [ext_resource path="res://scripts/ui/CreditsMenu.gd" type="Script" id=12]
 [ext_resource path="res://ui/fonts/bebas-neue-small.tres" type="DynamicFont" id=13]
+[ext_resource path="res://scripts/ui/Buttons.gd" type="Script" id=14]
 
 [sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.690205, 1 )
@@ -46,7 +47,12 @@ position = Vector2( 353.34, 942 )
 scale = Vector2( 0.346347, 4397.37 )
 texture = SubResource( 7 )
 
-[node name="Return" type="Button" parent="CreditsMenu"]
+[node name="Buttons" type="Control" parent="CreditsMenu"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 14 )
+
+[node name="Return" type="Button" parent="CreditsMenu/Buttons"]
 margin_left = 64.0
 margin_top = 832.0
 margin_right = 320.0
@@ -238,4 +244,4 @@ current = true
 [node name="logo" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.40764, 0.1, -2 )
 
-[connection signal="pressed" from="CreditsMenu/Return" to="CreditsMenu" method="on_return_button_pressed"]
+[connection signal="pressed" from="CreditsMenu/Buttons/Return" to="CreditsMenu" method="on_return_button_pressed"]
