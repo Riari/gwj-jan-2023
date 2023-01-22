@@ -244,11 +244,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -15 )
 [node name="track-straight20" parent="Grid/Track" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.655031, -0.511614, 0.556045, 0, 0.735896, 0.677094, -0.755602, -0.443518, 0.482035, 3.27072, 1.7363, -0.0384367 )
-environment = ExtResource( 2 )
-current = true
-
 [node name="logo" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.40764, 0.1, -2 )
 
@@ -257,5 +252,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65018, 1.13949, -4.24157 )
 light_energy = 0.264
 light_specular = 0.0
 shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.967766, -0.170526, 0.185335, 0.0550208, 0.861275, 0.505152, -0.245766, -0.478672, 0.842895, 1.549, 1.759, 1.147 )
+environment = ExtResource( 2 )
+current = true
 
 [connection signal="pressed" from="HowToPlayMenu/Buttons/Return" to="HowToPlayMenu" method="on_return_button_pressed"]

@@ -249,7 +249,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.967766, -0.170526, 0.185335, 0.0550208, 0.861275, 0.505152, -0.245766, -0.478672, 0.842895, 1.938, 1.526, 0.979 )
+transform = Transform( 0.967766, -0.170526, 0.185335, 0.0550208, 0.861275, 0.505152, -0.245766, -0.478672, 0.842895, 1.549, 1.759, 1.147 )
 environment = ExtResource( 2 )
 current = true
 

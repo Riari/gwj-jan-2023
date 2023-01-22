@@ -20,10 +20,11 @@ func add_node(node: Node):
 func is_position_valid(position: Vector3):
 	# position is expected to be in world space
 	var is_occupied = occupied_positions.has(Vector2(position.x, position.z))
-	var cell_coords = $GridMaps/Terrain.world_to_map($GridMaps.to_local(position))
-	var terrain_item = $GridMaps/Terrain.get_cell_item(cell_coords.x, cell_coords.y, cell_coords.z)
-	var scenery_large_item = $GridMaps/SceneryLarge.get_cell_item(cell_coords.x, cell_coords.y, cell_coords.z)
-	var scenery_small_item = $GridMaps/ScenerySmall.get_cell_item(cell_coords.x, cell_coords.y, cell_coords.z)
+	var cell_coords = $GridMaps/Terrain.world_to_map($GridMaps/Terrain.to_local(position))
+	print(cell_coords)
+	var terrain_item = $GridMaps/Terrain.get_cell_item(position.x, position.y, position.z)
+	var scenery_large_item = $GridMaps/SceneryLarge.get_cell_item(position.x, position.y, position.z)
+	var scenery_small_item = $GridMaps/ScenerySmall.get_cell_item(position.x, position.y, position.z)
 
 	return (not is_occupied
 		and terrain_item != GridMap.INVALID_CELL_ITEM
