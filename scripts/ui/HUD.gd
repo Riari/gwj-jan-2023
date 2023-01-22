@@ -8,8 +8,14 @@ onready var track_segment_buttons = get_node("BottomCentre/BuildMenu/TrackSegmen
 onready var train_car_buttons = get_node("BottomCentre/BuildMenu/TrainCars").get_children()
 onready var pause_menu = get_node("Centre/PauseMenu")
 onready var game_lost_menu = get_node("Centre/GameOver")
+onready var countdown = get_node("Centre/Countdown")
+onready var countdown_label = get_node("Centre/Countdown/TimeLabel")
+
+var countdown_timer = 3.0
 
 func _ready():
+	get_tree().paused = true
+
 	train_integrity_bar.value = 100
 
 	for button in track_segment_buttons:
@@ -17,6 +23,19 @@ func _ready():
 
 	for button in train_car_buttons:
 		button.connect("pressed", self, "on_train_car_button_pressed", [button.name])
+
+func _process(delta):
+	if not countdown.visible:
+		return
+
+	countdown_timer -= delta
+
+	if countdown_timer <= 0.0:
+		get_tree().paused = false
+		countdown.visible = false
+		return
+
+	countdown_label.text = str(int(ceil(countdown_timer)), "...")
 
 func on_train_integrity_changed(_old: float, new: float):
 	train_integrity_bar.value = new

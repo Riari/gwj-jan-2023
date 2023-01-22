@@ -9,6 +9,7 @@
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15948, 0 )
 cast_shadow = 0
 billboard = 1
+no_depth_test = true
 alpha_cut = 2
 script = ExtResource( 1 )
 

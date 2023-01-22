@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://meshes/libraries/scenery.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://environments/night.tres" type="Environment" id=2]
@@ -10,9 +10,11 @@
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--pressed.png" type="Texture" id=8]
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--hover.png" type="Texture" id=9]
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--normal.png" type="Texture" id=10]
-[ext_resource path="res://ui/fonts/bebas-neue-large.tres" type="DynamicFont" id=11]
 [ext_resource path="res://scripts/ui/MainMenu.gd" type="Script" id=12]
 [ext_resource path="res://scripts/ui/Buttons.gd" type="Script" id=13]
+[ext_resource path="res://_raw/textures/branding/GWJ-Full-Logo-noBG-4k.png" type="Texture" id=14]
+[ext_resource path="res://_raw/textures/branding/53-Theme-Ass-Required.png" type="Texture" id=15]
+[ext_resource path="res://ui/fonts/bebas-neue-small.tres" type="DynamicFont" id=16]
 
 [sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.690205, 1 )
@@ -53,9 +55,9 @@ script = ExtResource( 13 )
 
 [node name="HowToPlay" type="Button" parent="MainMenu/Buttons"]
 margin_left = 64.0
-margin_top = 152.0
+margin_top = 64.0
 margin_right = 320.0
-margin_bottom = 216.0
+margin_bottom = 128.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
@@ -63,9 +65,9 @@ text = "How to play"
 
 [node name="Play" type="Button" parent="MainMenu/Buttons"]
 margin_left = 64.0
-margin_top = 240.0
+margin_top = 152.0
 margin_right = 320.0
-margin_bottom = 304.0
+margin_bottom = 216.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
@@ -73,9 +75,9 @@ text = "Start game"
 
 [node name="Credits" type="Button" parent="MainMenu/Buttons"]
 margin_left = 64.0
-margin_top = 328.0
+margin_top = 240.0
 margin_right = 320.0
-margin_bottom = 392.0
+margin_bottom = 304.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
@@ -83,21 +85,56 @@ text = "Credits"
 
 [node name="Exit" type="Button" parent="MainMenu/Buttons"]
 margin_left = 64.0
-margin_top = 832.0
+margin_top = 328.0
 margin_right = 320.0
-margin_bottom = 896.0
+margin_bottom = 392.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
 text = "Exit"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu"]
+[node name="53-Theme-Ass-Required" type="Sprite" parent="MainMenu"]
+position = Vector2( 192, 720 )
+scale = Vector2( 0.0831171, 0.0831171 )
+texture = ExtResource( 15 )
+
+[node name="Gwj-Full-Logo-noBg-4k" type="Sprite" parent="MainMenu"]
+position = Vector2( 191.111, 536 )
+scale = Vector2( 0.0995555, 0.0995555 )
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="MainMenu"]
+self_modulate = Color( 1, 1, 1, 0.494118 )
+margin_left = 62.111
+margin_top = 416.0
+margin_right = 318.111
+margin_bottom = 464.0
+custom_fonts/font = ExtResource( 16 )
+text = "Made for"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="MainMenu"]
+self_modulate = Color( 1, 1, 1, 0.494118 )
+margin_left = 63.111
+margin_top = 608.0
+margin_right = 319.111
+margin_bottom = 664.0
+custom_fonts/font = ExtResource( 16 )
+text = "#53"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="MainMenu"]
+self_modulate = Color( 1, 1, 1, 0.494118 )
 margin_left = 64.0
-margin_top = 64.0
-margin_right = 400.0
-margin_bottom = 128.0
-custom_fonts/normal_font = ExtResource( 11 )
-text = "Main Menu"
+margin_top = 752.0
+margin_right = 320.0
+margin_bottom = 824.0
+custom_fonts/font = ExtResource( 16 )
+text = "(No wildcards used)"
+align = 1
+valign = 1
 
 [node name="Grid" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5 )
@@ -212,7 +249,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, -16 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.655031, -0.511614, 0.556045, 0, 0.735896, 0.677094, -0.755602, -0.443518, 0.482035, 3.27072, 1.7363, -0.0384367 )
+transform = Transform( 0.967766, -0.170526, 0.185335, 0.0550208, 0.861275, 0.505152, -0.245766, -0.478672, 0.842895, 1.938, 1.526, 0.979 )
 environment = ExtResource( 2 )
 current = true
 

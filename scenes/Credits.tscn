@@ -79,26 +79,28 @@ custom_fonts/normal_font = ExtResource( 11 )
 text = "Programming, sound effects & music"
 
 [node name="Credits2" type="RichTextLabel" parent="CreditsMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
 margin_left = 64.0
 margin_top = 680.0
 margin_right = 400.0
 margin_bottom = 744.0
 custom_fonts/normal_font = ExtResource( 13 )
-text = "Rick Mann"
+text = "Rick Mann (Riari)"
 
 [node name="Credits3" type="RichTextLabel" parent="CreditsMenu"]
 margin_left = 64.0
-margin_top = 384.0
+margin_top = 160.0
 margin_right = 576.0
-margin_bottom = 448.0
+margin_bottom = 224.0
 custom_fonts/normal_font = ExtResource( 11 )
 text = "Assets used"
 
 [node name="Credits4" type="RichTextLabel" parent="CreditsMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
 margin_left = 64.0
-margin_top = 440.0
+margin_top = 216.0
 margin_right = 848.0
-margin_bottom = 608.0
+margin_bottom = 384.0
 custom_fonts/normal_font = ExtResource( 13 )
 text = "Explosion sounds - zapsplat.com
 Explosion shader - github.com/drcd1/GodotSimpleExplosionVFX
@@ -107,17 +109,18 @@ Bebas Neue font (this one!) - Google Fonts"
 
 [node name="Credits5" type="RichTextLabel" parent="CreditsMenu"]
 margin_left = 64.0
-margin_top = 152.0
+margin_top = 392.0
 margin_right = 576.0
-margin_bottom = 216.0
+margin_bottom = 456.0
 custom_fonts/normal_font = ExtResource( 11 )
 text = "Tools used"
 
 [node name="Credits6" type="RichTextLabel" parent="CreditsMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
 margin_left = 64.0
-margin_top = 208.0
+margin_top = 448.0
 margin_right = 848.0
-margin_bottom = 376.0
+margin_bottom = 616.0
 custom_fonts/normal_font = ExtResource( 13 )
 text = "Godot 3.5.1
 Asset Forge Deluxe
@@ -243,5 +246,11 @@ current = true
 
 [node name="logo" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.40764, 0.1, -2 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65018, 1.13949, -4.24157 )
+light_energy = 0.264
+light_specular = 0.0
+shadow_enabled = true
 
 [connection signal="pressed" from="CreditsMenu/Buttons/Return" to="CreditsMenu" method="on_return_button_pressed"]

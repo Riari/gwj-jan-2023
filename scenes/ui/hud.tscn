@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-progress-64px.png" type="Texture" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -43,6 +43,8 @@
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--pressed.png" type="Texture" id=41]
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--hover.png" type="Texture" id=42]
 [ext_resource path="res://scripts/ui/Buttons.gd" type="Script" id=43]
+[ext_resource path="res://ui/fonts/bebas-neue-small.tres" type="DynamicFont" id=44]
+[ext_resource path="res://ui/fonts/bebas-neue-large.tres" type="DynamicFont" id=45]
 
 [sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.690205, 1 )
@@ -78,6 +80,7 @@ colors = PoolColorArray( 0.356863, 0, 0.150551, 0.72549 )
 gradient = SubResource( 13 )
 
 [node name="HUD" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
@@ -153,10 +156,10 @@ scale = Vector2( 0.104804, 4397.37 )
 texture = SubResource( 5 )
 
 [node name="TrackSegmentsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
-margin_left = 972.0
-margin_top = 936.0
-margin_right = 1228.0
-margin_bottom = 976.0
+margin_left = 970.0
+margin_top = 912.0
+margin_right = 1226.0
+margin_bottom = 952.0
 rect_pivot_offset = Vector2( -1120, -288 )
 text = "Track segments"
 
@@ -168,73 +171,89 @@ margin_bottom = 24.0
 script = ExtResource( 43 )
 
 [node name="StraightN" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
-margin_left = 850.0
-margin_top = 1000.0
-margin_right = 914.0
-margin_bottom = 1064.0
-hint_tooltip = "Test"
+margin_left = 848.0
+margin_top = 976.0
+margin_right = 912.0
+margin_bottom = 1040.0
 texture_normal = ExtResource( 11 )
 texture_hover = ExtResource( 12 )
 texture_disabled = ExtResource( 19 )
 expand = true
 
 [node name="StraightEW" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
-margin_left = 930.0
-margin_top = 1000.0
-margin_right = 994.0
-margin_bottom = 1064.0
+margin_left = 928.0
+margin_top = 976.0
+margin_right = 992.0
+margin_bottom = 1040.0
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 8 )
 texture_disabled = ExtResource( 20 )
 expand = true
 
 [node name="CornerSW" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
-margin_left = 1010.0
-margin_top = 1000.0
-margin_right = 1074.0
-margin_bottom = 1064.0
+margin_left = 1008.0
+margin_top = 976.0
+margin_right = 1072.0
+margin_bottom = 1040.0
 texture_normal = ExtResource( 14 )
 texture_hover = ExtResource( 13 )
 texture_disabled = ExtResource( 23 )
 expand = true
 
 [node name="CornerSE" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
-margin_left = 1090.0
-margin_top = 1000.0
-margin_right = 1154.0
-margin_bottom = 1064.0
+margin_left = 1088.0
+margin_top = 976.0
+margin_right = 1152.0
+margin_bottom = 1040.0
 texture_normal = ExtResource( 16 )
 texture_hover = ExtResource( 15 )
 texture_disabled = ExtResource( 22 )
 expand = true
 
 [node name="CornerWN" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
-margin_left = 1170.0
-margin_top = 1000.0
-margin_right = 1234.0
-margin_bottom = 1064.0
+margin_left = 1168.0
+margin_top = 976.0
+margin_right = 1232.0
+margin_bottom = 1040.0
 texture_normal = ExtResource( 18 )
 texture_hover = ExtResource( 17 )
 texture_disabled = ExtResource( 21 )
 expand = true
 
 [node name="CornerEN" type="TextureButton" parent="BottomCentre/BuildMenu/TrackSegments"]
-margin_left = 1250.0
-margin_top = 1000.0
-margin_right = 1314.0
-margin_bottom = 1064.0
+margin_left = 1248.0
+margin_top = 976.0
+margin_right = 1312.0
+margin_bottom = 1040.0
 texture_normal = ExtResource( 9 )
 texture_hover = ExtResource( 10 )
 texture_disabled = ExtResource( 24 )
 expand = true
 
 [node name="TrainCarsLabel" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
-margin_left = 1468.0
-margin_top = 936.0
-margin_right = 1724.0
-margin_bottom = 976.0
+margin_left = 1466.0
+margin_top = 912.0
+margin_right = 1584.0
+margin_bottom = 952.0
 rect_pivot_offset = Vector2( -1120, -288 )
 text = "Train cars"
+
+[node name="TrainCarsLabel2" type="RichTextLabel" parent="BottomCentre/BuildMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 0.745098 )
+margin_left = 1592.0
+margin_top = 915.0
+margin_right = 1984.0
+margin_bottom = 955.0
+rect_pivot_offset = Vector2( -1120, -288 )
+custom_fonts/normal_font = ExtResource( 44 )
+text = "(Only the first one is implemented!)"
+
+[node name="Label" type="Label" parent="BottomCentre/BuildMenu"]
+margin_left = 1466.0
+margin_top = 1032.0
+margin_right = 1531.0
+margin_bottom = 1071.0
+text = "$1500"
 
 [node name="TrainCars" type="Control" parent="BottomCentre/BuildMenu"]
 margin_left = 122.0
@@ -244,50 +263,55 @@ margin_bottom = 24.0
 script = ExtResource( 43 )
 
 [node name="TurretSmall" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
-margin_left = 1346.0
-margin_top = 1000.0
-margin_right = 1410.0
-margin_bottom = 1064.0
+margin_left = 1344.0
+margin_top = 976.0
+margin_right = 1408.0
+margin_bottom = 1040.0
+disabled = true
 texture_normal = ExtResource( 26 )
 texture_hover = ExtResource( 25 )
 texture_disabled = ExtResource( 27 )
 expand = true
 
 [node name="TurretLarge" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
-margin_left = 1426.0
-margin_top = 1000.0
-margin_right = 1490.0
-margin_bottom = 1064.0
+margin_left = 1424.0
+margin_top = 976.0
+margin_right = 1488.0
+margin_bottom = 1040.0
+disabled = true
 texture_normal = ExtResource( 28 )
 texture_hover = ExtResource( 29 )
 texture_disabled = ExtResource( 30 )
 expand = true
 
 [node name="TurretIncendiary" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
-margin_left = 1506.0
-margin_top = 1000.0
-margin_right = 1570.0
-margin_bottom = 1064.0
+margin_left = 1504.0
+margin_top = 976.0
+margin_right = 1568.0
+margin_bottom = 1040.0
+disabled = true
 texture_normal = ExtResource( 31 )
 texture_hover = ExtResource( 32 )
 texture_disabled = ExtResource( 33 )
 expand = true
 
 [node name="LaserSingle" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
-margin_left = 1586.0
-margin_top = 1000.0
-margin_right = 1650.0
-margin_bottom = 1064.0
+margin_left = 1584.0
+margin_top = 976.0
+margin_right = 1648.0
+margin_bottom = 1040.0
+disabled = true
 texture_normal = ExtResource( 34 )
 texture_hover = ExtResource( 35 )
 texture_disabled = ExtResource( 36 )
 expand = true
 
 [node name="LaserDouble" type="TextureButton" parent="BottomCentre/BuildMenu/TrainCars"]
-margin_left = 1666.0
-margin_top = 1000.0
-margin_right = 1730.0
-margin_bottom = 1064.0
+margin_left = 1664.0
+margin_top = 976.0
+margin_right = 1728.0
+margin_bottom = 1040.0
+disabled = true
 texture_normal = ExtResource( 37 )
 texture_hover = ExtResource( 39 )
 texture_disabled = ExtResource( 38 )
@@ -300,6 +324,35 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Countdown" type="Control" parent="Centre"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Overlay" type="Sprite" parent="Centre/Countdown"]
+position = Vector2( 960, 540 )
+scale = Vector2( 2.17969, 2504 )
+texture = SubResource( 7 )
+
+[node name="GetReadyLabel" type="Label" parent="Centre/Countdown"]
+margin_left = -128.0
+margin_top = -92.0
+margin_right = 128.0
+margin_bottom = -28.0
+custom_fonts/font = ExtResource( 45 )
+text = "Get ready!"
+align = 1
+valign = 1
+
+[node name="TimeLabel" type="Label" parent="Centre/Countdown"]
+margin_left = -128.0
+margin_top = -28.0
+margin_right = 128.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 45 )
+text = "3..."
+align = 1
+valign = 1
 
 [node name="PauseMenu" type="Control" parent="Centre"]
 pause_mode = 2
@@ -316,9 +369,9 @@ texture = SubResource( 7 )
 
 [node name="Panel" type="Panel" parent="Centre/PauseMenu"]
 margin_left = 800.0
-margin_top = 424.0
+margin_top = 256.0
 margin_right = 1152.0
-margin_bottom = 768.0
+margin_bottom = 600.0
 
 [node name="Label" type="Label" parent="Centre/PauseMenu/Panel"]
 margin_top = 32.0
@@ -378,9 +431,9 @@ texture = SubResource( 14 )
 
 [node name="Panel" type="Panel" parent="Centre/GameOver"]
 margin_left = 800.0
-margin_top = 424.0
+margin_top = 256.0
 margin_right = 1152.0
-margin_bottom = 768.0
+margin_bottom = 600.0
 
 [node name="Label" type="Label" parent="Centre/GameOver/Panel"]
 margin_top = 32.0
