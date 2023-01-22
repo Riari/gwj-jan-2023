@@ -10,11 +10,19 @@ onready var pause_menu = get_node("Centre/PauseMenu")
 onready var game_lost_menu = get_node("Centre/GameOver")
 onready var countdown = get_node("Centre/Countdown")
 onready var countdown_label = get_node("Centre/Countdown/TimeLabel")
+onready var grid = get_node("../Grid")
 
 var countdown_timer = 3.0
 
+var valid_tracks = {
+	GlobalEnums.CardinalDirection.N: [0, 2, 3],
+	GlobalEnums.CardinalDirection.E: [1, 5],
+	GlobalEnums.CardinalDirection.W: [1, 4]
+}
+
 func _ready():
 	get_tree().paused = true
+	countdown.visible = true
 
 	train_integrity_bar.value = 100
 
@@ -25,7 +33,7 @@ func _ready():
 		button.connect("pressed", self, "on_train_car_button_pressed", [button.name])
 
 func _process(delta):
-	if not countdown.visible:
+	if not countdown.visible or countdown_timer <= 0.0:
 		return
 
 	countdown_timer -= delta
@@ -69,3 +77,19 @@ func on_game_won():
 func on_game_lost():
 	get_tree().paused = true
 	game_lost_menu.visible = true
+
+func on_track_direction_changed(direction: int):
+	var valid_track_indices = valid_tracks[direction]
+
+	for button in track_segment_buttons:
+		button.disabled = not valid_track_indices.has(button.get_index())
+
+func on_next_track_position_changed(position: Vector3):
+	# position is expected to be in world space
+	var is_north_valid = grid.is_position_valid(Vector3(position.x, 0, position.z - 1.0))
+	var is_east_valid = grid.is_position_valid(Vector3(position.x + 1.0, 0, position.z))
+	var is_west_valid = grid.is_position_valid(Vector3(position.x - 1.0, 0, position.z))
+
+	print(is_north_valid)
+	print(is_east_valid)
+	print(is_west_valid)

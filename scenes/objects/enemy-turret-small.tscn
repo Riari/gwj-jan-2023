@@ -66,6 +66,7 @@ surfaces/2 = {
 script = ExtResource( 11 )
 
 [node name="3DProgressBar" parent="." index="0" instance=ExtResource( 10 )]
+visible = false
 generate_lightmap = false
 
 [node name="block_taper" parent="." index="1"]

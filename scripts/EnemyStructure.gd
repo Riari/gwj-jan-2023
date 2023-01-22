@@ -28,6 +28,9 @@ func on_body_entered(node: Node):
 	if not node.get_parent().is_in_group("projectile_player"):
 		return
 
+	if not integrity_bar.visible:
+		integrity_bar.visible = true
+
 	# TODO: Don't hard-code damage
 	integrity -= 10
 	integrity_bar.set_value(integrity)

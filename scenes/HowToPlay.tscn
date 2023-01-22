@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://meshes/libraries/scenery.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://environments/night.tres" type="Environment" id=2]
@@ -10,11 +10,16 @@
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--pressed.png" type="Texture" id=8]
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--hover.png" type="Texture" id=9]
 [ext_resource path="res://_raw/textures/ui/bg-button-rectangle--normal.png" type="Texture" id=10]
-[ext_resource path="res://scripts/ui/MainMenu.gd" type="Script" id=12]
-[ext_resource path="res://scripts/ui/Buttons.gd" type="Script" id=13]
-[ext_resource path="res://_raw/textures/branding/GWJ-Full-Logo-noBG-4k.png" type="Texture" id=14]
-[ext_resource path="res://_raw/textures/branding/53-Theme-Ass-Required.png" type="Texture" id=15]
-[ext_resource path="res://ui/fonts/bebas-neue-small.tres" type="DynamicFont" id=16]
+[ext_resource path="res://ui/fonts/bebas-neue-large.tres" type="DynamicFont" id=11]
+[ext_resource path="res://scripts/ui/CreditsMenu.gd" type="Script" id=12]
+[ext_resource path="res://_raw/textures/ui/screenshots/Godot_v3.5.1-stable_win64_c5mtnDPuI5.png" type="Texture" id=13]
+[ext_resource path="res://scripts/ui/Buttons.gd" type="Script" id=14]
+[ext_resource path="res://_raw/textures/ui/screenshots/Godot_v3.5.1-stable_win64_TQhZoAziwr.png" type="Texture" id=15]
+[ext_resource path="res://_raw/textures/ui/screenshots/Godot_v3.5.1-stable_win64_X8E3vtVgGi.png" type="Texture" id=16]
+[ext_resource path="res://_raw/textures/ui/screenshots/Godot_v3.5.1-stable_win64_eBt04ZPKr0.png" type="Texture" id=17]
+[ext_resource path="res://ui/fonts/bebas-neue-small.tres" type="DynamicFont" id=18]
+[ext_resource path="res://_raw/textures/ui/screenshots/Godot_v3.5.1-stable_win64_ImDAXW5qr5.png" type="Texture" id=19]
+[ext_resource path="res://_raw/textures/ui/screenshots/Godot_v3.5.1-stable_win64_eGYX7pWSVR.png" type="Texture" id=20]
 
 [sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.690205, 1 )
@@ -37,104 +42,95 @@ region_rect = Rect2( 0, 0, 256, 64 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="MainMenu" type="Control" parent="."]
+[node name="HowToPlayMenu" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( 192, 432 )
 theme = ExtResource( 7 )
 script = ExtResource( 12 )
 
-[node name="Background" type="Sprite" parent="MainMenu"]
-position = Vector2( 353.34, 942 )
-scale = Vector2( 0.346347, 4397.37 )
+[node name="Background" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 959.34, 942 )
+scale = Vector2( 0.938144, 4397.37 )
 texture = SubResource( 7 )
 
-[node name="Buttons" type="Control" parent="MainMenu"]
+[node name="Buttons" type="Control" parent="HowToPlayMenu"]
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
-[node name="HowToPlay" type="Button" parent="MainMenu/Buttons"]
+[node name="Return" type="Button" parent="HowToPlayMenu/Buttons"]
+margin_left = 64.0
+margin_top = 832.0
+margin_right = 320.0
+margin_bottom = 896.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "Return to menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HowToPlayMenu"]
 margin_left = 64.0
 margin_top = 64.0
-margin_right = 320.0
+margin_right = 400.0
 margin_bottom = 128.0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+custom_fonts/normal_font = ExtResource( 11 )
 text = "How to play"
 
-[node name="Play" type="Button" parent="MainMenu/Buttons"]
-margin_left = 64.0
-margin_top = 152.0
-margin_right = 320.0
-margin_bottom = 216.0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
-text = "Start game"
+[node name="GodotV351-stableWin64EGyx7pWsvr" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 136, 688 )
+texture = ExtResource( 20 )
 
-[node name="Credits" type="Button" parent="MainMenu/Buttons"]
-margin_left = 64.0
-margin_top = 240.0
-margin_right = 320.0
-margin_bottom = 304.0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
-text = "Credits"
+[node name="GodotV351-stableWin64C5MtnDpuI5" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 1288, 688 )
+texture = ExtResource( 13 )
 
-[node name="Exit" type="Button" parent="MainMenu/Buttons"]
-margin_left = 64.0
-margin_top = 328.0
-margin_right = 320.0
-margin_bottom = 392.0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
-text = "Exit"
+[node name="GodotV351-stableWin64EBt04zpkr0" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 1272.5, 366 )
+texture = ExtResource( 17 )
 
-[node name="53-Theme-Ass-Required" type="Sprite" parent="MainMenu"]
-position = Vector2( 192, 720 )
-scale = Vector2( 0.0831171, 0.0831171 )
+[node name="GodotV351-stableWin64TqhZoAziwr" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 144, 440 )
 texture = ExtResource( 15 )
 
-[node name="Gwj-Full-Logo-noBg-4k" type="Sprite" parent="MainMenu"]
-position = Vector2( 191.111, 536 )
-scale = Vector2( 0.0995555, 0.0995555 )
-texture = ExtResource( 14 )
+[node name="GodotV351-stableWin64X8E3VtVgGi" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 120, 216 )
+texture = ExtResource( 16 )
 
-[node name="Label" type="Label" parent="MainMenu"]
-self_modulate = Color( 1, 1, 1, 0.494118 )
-margin_left = 62.111
-margin_top = 416.0
-margin_right = 318.111
-margin_bottom = 464.0
-custom_fonts/font = ExtResource( 16 )
-text = "Made for"
-align = 1
-valign = 1
+[node name="GodotV351-stableWin64ImDaxw5Qr5" type="Sprite" parent="HowToPlayMenu"]
+position = Vector2( 1328.5, 190 )
+texture = ExtResource( 19 )
 
-[node name="Label2" type="Label" parent="MainMenu"]
-self_modulate = Color( 1, 1, 1, 0.494118 )
-margin_left = 63.111
-margin_top = 608.0
-margin_right = 319.111
-margin_bottom = 664.0
-custom_fonts/font = ExtResource( 16 )
-text = "#53"
-align = 1
-valign = 1
+[node name="Label" type="Label" parent="HowToPlayMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
+margin_left = 192.0
+margin_top = 128.0
+margin_right = 1024.0
+margin_bottom = 239.0
+custom_fonts/font = ExtResource( 18 )
+text = "This is your train. You need to get it from the south end of the map to the north end.
+You start with one turret car. Additional cars with weapons can be purchased.
+Keep an eye on your train's integrity meter!"
 
-[node name="Label4" type="Label" parent="MainMenu"]
-self_modulate = Color( 1, 1, 1, 0.494118 )
-margin_left = 64.0
-margin_top = 752.0
-margin_right = 320.0
-margin_bottom = 824.0
-custom_fonts/font = ExtResource( 16 )
-text = "(No wildcards used)"
-align = 1
-valign = 1
+[node name="Label2" type="Label" parent="HowToPlayMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
+margin_left = 240.0
+margin_top = 360.0
+margin_right = 832.0
+margin_bottom = 471.0
+custom_fonts/font = ExtResource( 18 )
+text = "Watch out for enemy defences. Destroy them to earn $$$.
+But don't pass too many of them - you might not make it!"
+
+[node name="Label3" type="Label" parent="HowToPlayMenu"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
+margin_left = 232.0
+margin_top = 568.0
+margin_right = 972.0
+margin_bottom = 679.0
+custom_fonts/font = ExtResource( 18 )
+text = "Lay track segments to extend the track before your train reaches the end of it.
+Choose carefully - some routes are more dangerous than others!"
 
 [node name="Grid" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5 )
@@ -249,7 +245,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.967766, -0.170526, 0.185335, 0.0550208, 0.861275, 0.505152, -0.245766, -0.478672, 0.842895, 1.938, 1.526, 0.979 )
+transform = Transform( 0.655031, -0.511614, 0.556045, 0, 0.735896, 0.677094, -0.755602, -0.443518, 0.482035, 3.27072, 1.7363, -0.0384367 )
 environment = ExtResource( 2 )
 current = true
 
@@ -262,7 +258,4 @@ light_energy = 0.264
 light_specular = 0.0
 shadow_enabled = true
 
-[connection signal="pressed" from="MainMenu/Buttons/HowToPlay" to="MainMenu" method="on_how_to_play_button_pressed"]
-[connection signal="pressed" from="MainMenu/Buttons/Play" to="MainMenu" method="on_play_button_pressed"]
-[connection signal="pressed" from="MainMenu/Buttons/Credits" to="MainMenu" method="on_credits_button_pressed"]
-[connection signal="pressed" from="MainMenu/Buttons/Exit" to="MainMenu" method="on_exit_button_pressed"]
+[connection signal="pressed" from="HowToPlayMenu/Buttons/Return" to="HowToPlayMenu" method="on_return_button_pressed"]

@@ -16,6 +16,8 @@ onready var train_locomotive = preload("res://scenes/objects/train-locomotive.ts
 onready var train_car_turret_small = preload("res://scenes/objects/train-car-turret-small.tscn")
 
 var curve_last_extended_to_segment = -1
+var last_segment_direction = GlobalEnums.CardinalDirection.N
+var next_segment_position
 var path = Path.new()
 var path_follows = []
 var cars = []
@@ -31,6 +33,8 @@ var spawn_second_car_timer = 0.0
 var integrity = 100
 
 signal integrity_changed(old, new)
+signal track_direction_changed(direction)
+signal next_track_position_changed(position)
 
 func _ready():
 	var curve = Curve3D.new()
@@ -40,16 +44,6 @@ func _ready():
 	add_child(path)
 
 	spawn_car(CAR_TYPE.LOCOMOTIVE)
-
-func _input(_event):
-	pass
-	# if event is InputEventKey && event.is_action_released("ui_select"):
-	# 	var segment = track_segment_straight.instance()
-	# 	segment.global_translation = Vector3(2.5, 0, -1.5)
-	# 	segment.rotation_degrees = Vector3(0, -90, 0)
-	# 	track.add_child(segment)
-	# 	path.set_curve(update_curve(path.get_curve()))
-	# 	spawn_car(CAR_TYPE.TURRET_SMALL)
 
 func _process(delta):
 	if car_count == 0:
@@ -62,7 +56,7 @@ func _process(delta):
 
 	if path_follows[0].unit_offset == 1.0:
 		# Locomotive has reached the end of the track
-		# win_loss_controller.trigger_loss()
+		win_loss_controller.trigger_loss()
 		moving = false
 
 	if not moving:
@@ -120,7 +114,7 @@ func update_curve(curve):
 		curve_last_extended_to_segment = i
 
 		# Determine which way to traverse the points - from last to first if the last point is closer, otherwise first to last
-		if points[points.size() - 1].global_translation.distance_to(path_end) < points[0].global_translation.distance_to(path_end):
+		if points[-1].global_translation.distance_to(path_end) < points[0].global_translation.distance_to(path_end):
 			for j in range(points.size(), 0, -1):
 				path_end = points[j - 1].global_translation
 				new_curve.add_point(path_end)
@@ -129,7 +123,43 @@ func update_curve(curve):
 				path_end = points[j].global_translation
 				new_curve.add_point(path_end)
 
+	var points = new_curve.get_baked_points()
+	var last_two_points = [points[-1], points[-2]]
+	last_segment_direction = determine_direction(last_two_points)
+
+	var previous_segment = track.get_child(track.get_child_count() - 1)
+	var previous_position = previous_segment.translation
+
+	var position = previous_position
+	match last_segment_direction:
+		GlobalEnums.CardinalDirection.N:
+			position.z -= 1.0
+		GlobalEnums.CardinalDirection.E:
+			position.x += 1.0
+		GlobalEnums.CardinalDirection.W:
+			position.x -= 1.0
+
+	next_segment_position = position
+
+	emit_signal("track_direction_changed", last_segment_direction)
+	emit_signal("next_track_position_changed", track.to_global(next_segment_position))
+
 	return new_curve
+
+func determine_direction(points):
+	var ultimate = Vector2(points[0].x, points[0].z)
+	var penultimate = Vector2(points[1].x, points[1].z)
+
+	# assert(ultimate.y < penultimate.y, "Track segment appears to be going south")
+
+	if ultimate.x == penultimate.x:
+		return GlobalEnums.CardinalDirection.N
+
+	if ultimate.x < penultimate.x:
+		return GlobalEnums.CardinalDirection.W
+
+	if ultimate.x > penultimate.x:
+		return GlobalEnums.CardinalDirection.E
 
 func on_car_collision_detected(_car: Node, node: Node):
 	# TODO: don't hard-code damage
@@ -142,16 +172,26 @@ func on_car_collision_detected(_car: Node, node: Node):
 		if integrity <= 0:
 			win_loss_controller.trigger_loss()
 
-func on_hud_requested_track(_type: String):
-	# TODO: Replace with match statement to cover all types
-	var segment = track_segment_straight.instance()
-	var position = track.get_child(track.get_child_count() - 1).translation
-	var rotation = track.get_child(track.get_child_count() - 1).rotation_degrees
+func on_hud_requested_track(type: String):
+	var segment
+	var rotation_degrees = 0.0
+	if type == "StraightN" or type == "StraightEW":
+		segment = track_segment_straight.instance()
+		if type == "StraightEW":
+			rotation_degrees = -90.0
+	else:
+		segment = track_segment_corner.instance()
+		match type:
+			"CornerSW":
+				rotation_degrees = -90.0
+			"CornerWN":
+				rotation_degrees = 90.0
+			"CornerEN":
+				rotation_degrees = 180.0
 
-	# TODO: Make this dynamic based on track direction
-	segment.translation = position
-	segment.rotation_degrees = rotation
-	segment.translation.z = position.z - 1.0
+	segment.translation = next_segment_position
+	segment.rotation_degrees.y = rotation_degrees
+
 	track.add_child(segment)
 	path.set_curve(update_curve(path.get_curve()))
 
