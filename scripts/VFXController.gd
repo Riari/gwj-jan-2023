@@ -23,6 +23,8 @@ func _process(delta):
 			to_remove.append(i)
 
 	for i in to_remove:
+		if i >= vfx_active.size():
+			return
 		remove_child(vfx_active[i])
 		vfx_active.remove(i)
 		vfx_timers.remove(i)

@@ -115,10 +115,10 @@ projectile_scale_modifier = 0.5
 projectile_interval = 0.2
 
 [node name="Turret" type="Spatial" parent="TurretContainer" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304097, 0 )
 
 [node name="Model" type="MeshInstance" parent="TurretContainer/Turret" index="0"]
-transform = Transform( 0.38, 0, 6.64414e-08, 0, 0.38, 0, -6.64414e-08, 0, 0.38, 1.99182e-08, -0.350312, 2.98023e-08 )
+transform = Transform( 0.38, 0, 6.64414e-08, 0, 0.38, 0, -6.64414e-08, 0, 0.38, 1.99182e-08, 0.00171286, 2.98023e-08 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 2 )
@@ -129,16 +129,16 @@ material/2 = ExtResource( 2 )
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0731685, -0.311 )
 
 [node name="0" type="Spatial" parent="TurretContainer/Turret/MuzzlePoints" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766233, -0.581285, 0.276577 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766233, 0.124805, 0.276577 )
 
 [node name="1" type="Spatial" parent="TurretContainer/Turret/MuzzlePoints" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0758713, -0.581285, 0.276577 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0758713, 0.118683, 0.276577 )
 
 [node name="2" type="Spatial" parent="TurretContainer/Turret/MuzzlePoints" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0758713, -0.732872, 0.276577 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0758713, -0.0267817, 0.276577 )
 
 [node name="3" type="Spatial" parent="TurretContainer/Turret/MuzzlePoints" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766233, -0.732872, 0.276577 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766233, -0.0267817, 0.276577 )
 
 [node name="Audio" type="Spatial" parent="TurretContainer" index="1"]
 

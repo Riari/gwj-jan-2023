@@ -11,6 +11,8 @@ var integrity = 100
 
 var rng = RandomNumberGenerator.new()
 
+signal enemy_structure_destroyed()
+
 func _ready():
 	integrity_bar.set_value(integrity)
 
@@ -32,7 +34,7 @@ func on_body_entered(node: Node):
 		integrity_bar.visible = true
 
 	# TODO: Don't hard-code damage
-	integrity -= 10
+	integrity -= 12
 	integrity_bar.set_value(integrity)
 	node.get_owner().explode()
 
@@ -40,6 +42,10 @@ func on_body_entered(node: Node):
 		destroy()
 
 func destroy():
+	if is_destroyed:
+		return
+
 	is_destroyed = true
 	integrity_bar.visible = false
+	emit_signal("enemy_structure_destroyed")
 	sounds_explosion[rng.randi_range(0, sounds_explosion.size() - 1)].play()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/emergency_alarm_002.mp3-7da13a5bf30e73a03f9879391b29e618.mp3str"
+
+[deps]
+
+source_file="res://_raw/audio/effects/emergency_alarm_002.mp3"
+dest_files=[ "res://.import/emergency_alarm_002.mp3-7da13a5bf30e73a03f9879391b29e618.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

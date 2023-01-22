@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://_raw/textures/ui/nine-patch-progress-bar-progress-64px.png" type="Texture" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -45,6 +45,7 @@
 [ext_resource path="res://scripts/ui/Buttons.gd" type="Script" id=43]
 [ext_resource path="res://ui/fonts/bebas-neue-small.tres" type="DynamicFont" id=44]
 [ext_resource path="res://ui/fonts/bebas-neue-large.tres" type="DynamicFont" id=45]
+[ext_resource path="res://scripts/ui/WarningApproachingTrackEnd.gd" type="Script" id=46]
 
 [sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.690205, 1 )
@@ -115,6 +116,13 @@ colors = PoolColorArray( 0.356863, 0, 0.150551, 0.72549 )
 [sub_resource type="GradientTexture" id=14]
 gradient = SubResource( 13 )
 
+[sub_resource type="Gradient" id=29]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0.792157, 0.419608, 0.192157 )
+
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
+
 [node name="HUD" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
@@ -178,6 +186,28 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="WarningApproachingTrackEnd" type="Control" parent="BottomCentre"]
+visible = false
+margin_left = -192.0
+margin_top = -376.0
+margin_right = 192.0
+margin_bottom = -312.0
+script = ExtResource( 46 )
+
+[node name="Panel" type="Panel" parent="BottomCentre/WarningApproachingTrackEnd"]
+margin_left = -24.0
+margin_right = 408.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="BottomCentre/WarningApproachingTrackEnd/Panel"]
+self_modulate = Color( 1, 0, 0.282353, 1 )
+margin_left = -40.0
+margin_right = 472.0
+margin_bottom = 64.0
+text = "!! WARNING - APPROACHING TRACK END !!"
+align = 1
+valign = 1
 
 [node name="BuildMenu" type="Control" parent="BottomCentre"]
 pause_mode = 1
@@ -366,6 +396,16 @@ texture_hover = ExtResource( 39 )
 texture_disabled = ExtResource( 38 )
 expand = true
 
+[node name="Money" type="Label" parent="BottomCentre"]
+self_modulate = Color( 0, 1, 0.462745, 1 )
+margin_left = -192.0
+margin_top = -232.0
+margin_right = 192.0
+margin_bottom = -193.0
+text = "$0"
+align = 1
+valign = 1
+
 [node name="Centre" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -498,7 +538,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 43 )
 
-[node name="Continue" type="Button" parent="Centre/GameOver/Panel/Buttons"]
+[node name="Restart" type="Button" parent="Centre/GameOver/Panel/Buttons"]
 margin_left = 48.0
 margin_top = 96.0
 margin_right = 304.0
@@ -528,9 +568,85 @@ custom_styles/pressed = SubResource( 11 )
 custom_styles/normal = SubResource( 9 )
 text = "Exit game"
 
+[node name="GameWon" type="Control" parent="Centre"]
+pause_mode = 2
+visible = false
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 532.0
+
+[node name="Overlay" type="Sprite" parent="Centre/GameWon"]
+position = Vector2( 960, 540 )
+scale = Vector2( 2.17969, 2504 )
+texture = SubResource( 30 )
+
+[node name="Panel" type="Panel" parent="Centre/GameWon"]
+margin_left = 800.0
+margin_top = 256.0
+margin_right = 1152.0
+margin_bottom = 640.0
+
+[node name="Label" type="Label" parent="Centre/GameWon/Panel"]
+margin_top = 32.0
+margin_right = 352.0
+margin_bottom = 72.0
+text = "You won!"
+align = 1
+valign = 1
+
+[node name="CarCount" type="Label" parent="Centre/GameWon/Panel"]
+self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
+margin_top = 72.0
+margin_right = 352.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 44 )
+text = "You finished with 6 cars. Nice!"
+align = 1
+valign = 1
+
+[node name="Buttons" type="Control" parent="Centre/GameWon/Panel"]
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 80.0
+script = ExtResource( 43 )
+
+[node name="PlayAgain" type="Button" parent="Centre/GameWon/Panel/Buttons"]
+margin_left = 48.0
+margin_top = 96.0
+margin_right = 304.0
+margin_bottom = 160.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Play again"
+
+[node name="ExitToMenu" type="Button" parent="Centre/GameWon/Panel/Buttons"]
+margin_left = 48.0
+margin_top = 168.0
+margin_right = 304.0
+margin_bottom = 232.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Exit to menu"
+
+[node name="ExitGame" type="Button" parent="Centre/GameWon/Panel/Buttons"]
+margin_left = 48.0
+margin_top = 240.0
+margin_right = 304.0
+margin_bottom = 304.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Exit game"
+
 [connection signal="pressed" from="Centre/PauseMenu/Panel/Buttons/Continue" to="." method="on_pause_menu_continue_pressed"]
 [connection signal="pressed" from="Centre/PauseMenu/Panel/Buttons/ExitToMenu" to="." method="on_exit_to_menu_button_pressed"]
 [connection signal="pressed" from="Centre/PauseMenu/Panel/Buttons/ExitGame" to="." method="on_exit_game_button_pressed"]
-[connection signal="pressed" from="Centre/GameOver/Panel/Buttons/Continue" to="." method="on_game_over_restart_pressed"]
+[connection signal="pressed" from="Centre/GameOver/Panel/Buttons/Restart" to="." method="on_game_over_restart_pressed"]
 [connection signal="pressed" from="Centre/GameOver/Panel/Buttons/ExitToMenu" to="." method="on_exit_to_menu_button_pressed"]
 [connection signal="pressed" from="Centre/GameOver/Panel/Buttons/ExitGame" to="." method="on_exit_game_button_pressed"]
+[connection signal="pressed" from="Centre/GameWon/Panel/Buttons/PlayAgain" to="." method="on_game_over_restart_pressed"]
+[connection signal="pressed" from="Centre/GameWon/Panel/Buttons/ExitToMenu" to="." method="on_exit_to_menu_button_pressed"]
+[connection signal="pressed" from="Centre/GameWon/Panel/Buttons/ExitGame" to="." method="on_exit_game_button_pressed"]

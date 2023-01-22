@@ -94,21 +94,21 @@ custom_styles/normal = SubResource( 10 )
 text = "Exit"
 
 [node name="53-Theme-Ass-Required" type="Sprite" parent="MainMenu"]
-position = Vector2( 192, 720 )
+position = Vector2( 192, 744 )
 scale = Vector2( 0.0831171, 0.0831171 )
 texture = ExtResource( 15 )
 
 [node name="Gwj-Full-Logo-noBg-4k" type="Sprite" parent="MainMenu"]
-position = Vector2( 191.111, 536 )
+position = Vector2( 191.111, 560 )
 scale = Vector2( 0.0995555, 0.0995555 )
 texture = ExtResource( 14 )
 
 [node name="Label" type="Label" parent="MainMenu"]
 self_modulate = Color( 1, 1, 1, 0.494118 )
 margin_left = 62.111
-margin_top = 416.0
+margin_top = 440.0
 margin_right = 318.111
-margin_bottom = 464.0
+margin_bottom = 488.0
 custom_fonts/font = ExtResource( 16 )
 text = "Made for"
 align = 1
@@ -117,9 +117,9 @@ valign = 1
 [node name="Label2" type="Label" parent="MainMenu"]
 self_modulate = Color( 1, 1, 1, 0.494118 )
 margin_left = 63.111
-margin_top = 608.0
+margin_top = 632.0
 margin_right = 319.111
-margin_bottom = 664.0
+margin_bottom = 688.0
 custom_fonts/font = ExtResource( 16 )
 text = "#53"
 align = 1
@@ -128,9 +128,9 @@ valign = 1
 [node name="Label4" type="Label" parent="MainMenu"]
 self_modulate = Color( 1, 1, 1, 0.494118 )
 margin_left = 64.0
-margin_top = 752.0
+margin_top = 776.0
 margin_right = 320.0
-margin_bottom = 824.0
+margin_bottom = 848.0
 custom_fonts/font = ExtResource( 16 )
 text = "(No wildcards used)"
 align = 1

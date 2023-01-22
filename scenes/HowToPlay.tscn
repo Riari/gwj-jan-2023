@@ -78,15 +78,15 @@ custom_fonts/normal_font = ExtResource( 11 )
 text = "How to play"
 
 [node name="GodotV351-stableWin64EGyx7pWsvr" type="Sprite" parent="HowToPlayMenu"]
-position = Vector2( 136, 688 )
+position = Vector2( 152, 688 )
 texture = ExtResource( 20 )
 
 [node name="GodotV351-stableWin64C5MtnDpuI5" type="Sprite" parent="HowToPlayMenu"]
-position = Vector2( 1288, 688 )
+position = Vector2( 1352, 688 )
 texture = ExtResource( 13 )
 
 [node name="GodotV351-stableWin64EBt04zpkr0" type="Sprite" parent="HowToPlayMenu"]
-position = Vector2( 1272.5, 366 )
+position = Vector2( 1336, 368 )
 texture = ExtResource( 17 )
 
 [node name="GodotV351-stableWin64TqhZoAziwr" type="Sprite" parent="HowToPlayMenu"]
@@ -94,18 +94,18 @@ position = Vector2( 144, 440 )
 texture = ExtResource( 15 )
 
 [node name="GodotV351-stableWin64X8E3VtVgGi" type="Sprite" parent="HowToPlayMenu"]
-position = Vector2( 120, 216 )
+position = Vector2( 168, 216 )
 texture = ExtResource( 16 )
 
 [node name="GodotV351-stableWin64ImDaxw5Qr5" type="Sprite" parent="HowToPlayMenu"]
-position = Vector2( 1328.5, 190 )
+position = Vector2( 1392, 192 )
 texture = ExtResource( 19 )
 
 [node name="Label" type="Label" parent="HowToPlayMenu"]
 self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
-margin_left = 192.0
+margin_left = 256.0
 margin_top = 128.0
-margin_right = 1024.0
+margin_right = 1088.0
 margin_bottom = 239.0
 custom_fonts/font = ExtResource( 18 )
 text = "This is your train. You need to get it from the south end of the map to the north end.
@@ -114,9 +114,9 @@ Keep an eye on your train's integrity meter!"
 
 [node name="Label2" type="Label" parent="HowToPlayMenu"]
 self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
-margin_left = 240.0
+margin_left = 256.0
 margin_top = 360.0
-margin_right = 832.0
+margin_right = 848.0
 margin_bottom = 471.0
 custom_fonts/font = ExtResource( 18 )
 text = "Watch out for enemy defences. Destroy them to earn $$$.
@@ -124,12 +124,13 @@ But don't pass too many of them - you might not make it!"
 
 [node name="Label3" type="Label" parent="HowToPlayMenu"]
 self_modulate = Color( 0.65098, 0.694118, 0.756863, 1 )
-margin_left = 232.0
+margin_left = 256.0
 margin_top = 568.0
-margin_right = 972.0
+margin_right = 996.0
 margin_bottom = 679.0
 custom_fonts/font = ExtResource( 18 )
 text = "Lay track segments to extend the track before your train reaches the end of it.
+Your track can only go north, east, or west.
 Choose carefully - some routes are more dangerous than others!"
 
 [node name="Grid" type="Spatial" parent="."]

@@ -25,3 +25,5 @@ Button/styles/focus = SubResource( 4 )
 Button/styles/hover = SubResource( 2 )
 Button/styles/normal = SubResource( 1 )
 Button/styles/pressed = SubResource( 3 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0.576471 )
+Label/constants/shadow_offset_x = 0
